@@ -1,0 +1,308 @@
+/* || base style */
+
+:root {
+	--light-blue: #4A90E2;
+	--blue: #00408B;
+	--red: #D0021B;
+	--star: #F5A623;
+	--active: #FFF2DC;
+	--form-background: #F2F2F2;
+	--ignore: #C8C8C8;
+	--dark-gray: #757575;
+	--white: #FFFFFF;
+	--black: #000000;
+	--body-background: #E1E1E1;
+	--mark-background: #FFF2DC;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+	background-color: var(--body-background);
+	line-height: 1rem;
+}
+
+main {
+	margin: 2.9vh 19.8vw;
+}
+
+/* nav */
+
+nav {
+	height: 76px;
+	background-color: var(--light-blue);
+	padding: 0 17.8vw;
+	display: flex;
+	flex-direction: row;
+}
+
+nav>div {
+	flex: 1;
+	text-align: center;
+	cursor: pointer;
+	line-height: 71px;
+	/* 減去 border */
+}
+
+.sort {
+	color: white;
+}
+
+.sort>div {
+	border-top: 5px solid black;
+	margin: 0 30.2px;
+}
+
+/* end nav */
+
+/* || task-title-input */
+
+.task-title-input {
+	width: 100%;
+	height: 65px;
+	text-align: left;
+	padding-left: 2rem;
+	color: var(--ignore);
+	background-color: var(--white);
+	border: 2px var(--ignore) solid;
+	border-radius: 5px;
+}
+
+.task-title-input:focus {
+	color: var(--blue);
+}
+
+/* end task-title-input */
+
+/* || task-container */
+
+.task-container {
+	background-color: var(--form-background);
+	margin-bottom: 20px;
+}
+
+/* titleBlock */
+
+.title-block {
+	padding: 24px 32px;
+	border-bottom: 2px solid var(--ignore);
+}
+
+.title-block>span {
+	display: block;
+	font-weight: 500;
+	font-size: 28px;
+	margin: 5px;
+}
+
+.edit, .star {
+	float: right;
+	margin-left: 32px;
+	height: 24px;
+	width: 24px;
+}
+
+/* setting-block */
+
+.setting-block {
+	padding-left: 72px;
+	font-weight: 500;
+	font-size: 20px;
+	position: relative;
+}
+
+.setting-block>div {
+	margin: 24px 0;
+}
+
+.setting-block input, .file-upload, .setting-block textarea {
+	position: relative;
+	left: 20px;
+	margin-top: 8px;
+	border: 0;
+}
+
+textarea {
+	width: calc(100% - 72px);
+	height: 100px;
+}
+
+.setting-block>div>svg, .status-block>span>svg {
+	width: 15px;
+	height: 15px;
+}
+
+/* status-block */
+
+.status-block {
+	padding-left: 40px;
+	margin-top: 20px;
+}
+
+.status-block>span {
+	margin-right: 5px;
+	font-size: 16px;
+	color: var(--dark-gray);
+}
+
+.setting-block>div>span {
+	margin-left: 4px;
+}
+
+/* button-block */
+
+.button-block {
+	width: 100%;
+	height: 60px;
+}
+
+.button-block>button {
+	border: 0;
+	padding: 0;
+	width: 50%;
+	height: 60px;
+}
+
+.cancel-button {
+	background-color: var(--white);
+	color: var(--red);
+}
+
+.submit-button {
+	background-color: var(--light-blue);
+	color: var(--white);
+}
+
+/* end task-container */
+
+/* || custom checkbox */
+
+input[type="checkbox"] {
+	display: none;
+	/* 讓 checkbox 本體不顯示 */
+}
+
+.checkbox-container {
+	position: relative;
+	float: left;
+	display: block;
+	margin-right: 15px;
+	height: 24px;
+	width: 24px;
+}
+
+.check-mark {
+	background-color: var(--white);
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.check-mark:hover {
+	background-color: var(--ignore);
+}
+
+.checkbox-container>input:checked+.check-mark {
+	/* checkbox裡的 input:checked 和 check-Mark 一起被選擇*/
+	background-color: blue;
+}
+
+.check-mark::before {
+	position: absolute;
+	top: 7%;
+	left: 35%;
+	content: "";
+	display: block;
+	opacity: 0.8;
+	z-index: 10;
+	width: 30%;
+	height: 60%;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/* Q: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+
+/* .container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+} */
+
+/* end custom checkbox */
+
+/* || others */
+
+/* date time input */
+
+input[type="date"], input[type="time"] {
+	color: var(--ignore);
+}
+
+/* file upload */
+
+input[type="file"] {
+	display: none;
+}
+
+.file-upload {
+	display: block;
+	height: 32px;
+	width: 32px;
+	background-color: var(--ignore);
+	text-align: center;
+	font-size: 32px;
+	line-height: 32px;
+	color: var(--white);
+	border-radius: 2px;
+	font-weight: 400;
+}
+
+.file-upload:hover {
+	background-color: var(--dark-gray);
+}
+
+/* task-display-area */
+
+.task-display-area {
+	margin-top: 24px;
+}
+
+.task-display-area>section {
+	margin-bottom: 9px;
+}
+
+/* other */
+
+section[data-mark="mark"]>div[class="title-block"] {
+	background-color: var(--mark-background);
+}
+
+section[data-mark="mark"]>div[class="title-block"]>a[class="star"] {
+	color: var(--star);
+}
+
+.disappear {
+	display: none;
+}
+
+.drag-focus::before {
+	content: "";
+	display: block;
+	border-bottom: 3px solid black;
+	position: relative;
+	top: -7px;
+}
+
+.drag-focus-last::after {
+	content: "";
+	display: block;
+	border-bottom: 3px solid black;
+	position: relative;
+	top: -7px;
+}

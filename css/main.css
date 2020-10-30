@@ -1,11 +1,11 @@
 /* || base style */
 
 :root {
-	--light-blue: #4A90E2;
-	--blue: #00408B;
-	--red: #D0021B;
+	--header-background: #4A90E2;
+	--checkbox-checked: #00408B;
+	--cancel-colord: #D0021B;
 	--star: #F5A623;
-	--active: #FFF2DC;
+	--star-background: #FFF2DC;
 	--form-background: #F2F2F2;
 	--ignore: #C8C8C8;
 	--dark-gray: #757575;
@@ -30,7 +30,7 @@ main {
 
 nav {
 	height: 76px;
-	background-color: var(--light-blue);
+	background-color: var(--header-background);
 	padding: 0 17.8vw;
 	display: flex;
 	flex-direction: row;
@@ -69,7 +69,7 @@ nav>div {
 }
 
 .task-title-input:focus {
-	color: var(--blue);
+	color: var(--checkbox-checked);
 }
 
 /* end task-title-input */
@@ -169,7 +169,7 @@ textarea {
 }
 
 .submit-button {
-	background-color: var(--light-blue);
+	background-color: var(--header-background);
 	color: var(--white);
 }
 

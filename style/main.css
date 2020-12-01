@@ -35,7 +35,7 @@ main {
 	margin: 2.9vh auto;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 650px) {
 	main {
 		max-width: 95%;
 	}
@@ -50,7 +50,7 @@ nav {
 
 @media (max-width: 576px) {
 	nav {
-		font-size: smaller;
+		font-size: 18px;
 	}
 }
 
@@ -118,20 +118,36 @@ nav {
 /* titleBlock */
 
 .title-block {
+	display: grid;
 	padding: 24px 32px;
+	grid-template-areas:
+		"checkbox input star edit"
+		"empty title title title"
+		"empty status status status";
+	grid-template-columns: 50px auto 50px 50px;
 	border-bottom: 2px solid var(--ignore);
 }
+
+.checkbox-container { grid-area: checkbox; }
+.title-block>span { grid-area: input; }
+.edit { grid-area: edit; justify-self: right; }
+.star { grid-area: star; justify-self: right; }
+.status-block { grid-area: status; }
 
 .title-block>span {
 	display: block;
 	font-weight: 500;
 	font-size: 28px;
-	margin: 5px;
+}
+
+@media (max-width: 576px) {
+	.title-block>span {
+		display: block;
+	}
 }
 
 .edit, .star {
 	float: right;
-	margin-left: 32px;
 	height: 24px;
 	width: 24px;
 }
@@ -169,7 +185,6 @@ textarea {
 /* status-block */
 
 .status-block {
-	padding-left: 40px;
 	margin-top: 20px;
 }
 

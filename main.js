@@ -1,4 +1,3 @@
-const cc = console.log;
 
 let taskList = [];
 let disappearSwitch = false;
@@ -107,7 +106,6 @@ function updateTaskList(element, key, value) {
 	let id, index;
 	id = element.parentElement.parentElement.id;
 	if (id === "js-input-container") {
-		cc('id === "js-input-container"')
 		return;
 	}
 
@@ -115,7 +113,6 @@ function updateTaskList(element, key, value) {
 	if (key) { taskList[index][key] = value }
 	else { taskList[index] = value };
 	saveToLocalStorage();
-	cc('element =>', element, 'id', id, 'tasklist[index]=>', taskList[index], 'value', value, 'taskList[index][key]', taskList[index][key])
 }
 
 function saveToLocalStorage() {

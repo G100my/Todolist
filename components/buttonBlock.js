@@ -45,8 +45,6 @@ function createButtonBlock() {
 		checkboxElement = settingBlock.previousElementSibling.firstElementChild.firstElementChild;
 		titleElement = checkboxElement.parentElement.parentElement.children[3];
 		markElement = settingBlock.parentElement;
-		cc(markElement, 'markElement')
-		cc(markElement.dataset.mark)
 		dateElement = settingBlock.firstElementChild.children[3];
 		timeElement = dateElement.nextElementSibling;
 		// fileElement = settingBlock.children[1].lastElementChild.lastElementChild;

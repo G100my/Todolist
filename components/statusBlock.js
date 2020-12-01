@@ -1,3 +1,5 @@
+import { datetimeIcon, fileIcon, commentIcon } from "../icon/icon.js";
+
 // ==== statusBlock
 function createStatusBlock(pushData) {
 	let statusBlock, deadlineSpan, fileSpan, commentSpan;

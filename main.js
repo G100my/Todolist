@@ -123,8 +123,8 @@ function saveToLocalStorage() {
 
 // ==== sort
 
-let nav = document.getElementsByTagName("nav")[0].children;
-let lastSelected = nav[0];
+let navItems = document.querySelector(".nav-container").children;
+let lastSelected = navItems[0];
 
 // value => checkbox Value, mode => just for control
 function sort(value, mode) {
@@ -150,11 +150,11 @@ function switchStyle(target) {
 }
 
 // all tasks
-nav[0].onclick = function () { sort(false, false); switchStyle(this) }
+navItems[0].onclick = function () { sort(false, false); switchStyle(this) }
 // in progress
-nav[1].onclick = function () { sort(true, true); switchStyle(this) }
+navItems[1].onclick = function () { sort(true, true); switchStyle(this) }
 // completed
-nav[2].onclick = function () { sort(false, true); switchStyle(this) }
+navItems[2].onclick = function () { sort(false, true); switchStyle(this) }
 
 
 // ==== drag

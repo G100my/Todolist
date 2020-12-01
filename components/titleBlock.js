@@ -75,3 +75,5 @@ function createTitleBlock() {
 
 	return titleBlock;
 }
+
+export default createTitleBlock;

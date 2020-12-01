@@ -1,3 +1,8 @@
+import createButtonBlock from "./components/buttonBlock.js";
+import creatDetailBlock from "./components/detailBlock.js";
+import createStatusBlock from "./components/statusBlock.js";
+import createTitleBlock from "./components/titleBlock.js";
+
 
 let taskList = [];
 let disappearSwitch = false;

@@ -1,4 +1,5 @@
 // ==== buttonBlock
+
 function createButtonBlock() {
 	let buttonBlock, cancelButton, submitButton;
 
@@ -73,3 +74,5 @@ function createButtonBlock() {
 
 	return buttonBlock;
 }
+
+export default createButtonBlock;

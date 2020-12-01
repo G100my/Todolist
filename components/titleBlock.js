@@ -61,7 +61,6 @@ function createTitleBlock() {
 	titleBlock.setter = function (pushData) {
 		(pushData.mark == "mark") ? star.innerHTML = starFillIcon : star.innerHTML.starEmpty;
 		checkbox.checked = pushData.completed;
-		cc('checkbox.checked', checkbox.checked)
 		taskTitle.textContent = pushData.title;
 	}
 

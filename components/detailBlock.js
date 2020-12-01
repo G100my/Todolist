@@ -43,3 +43,5 @@ function creatDetailBlock() {
 	}
 	return settingBlock;
 }
+
+export default creatDetailBlock;

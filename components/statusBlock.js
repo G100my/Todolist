@@ -32,3 +32,5 @@ function createStatusBlock(pushData) {
 
 	return statusBlock;
 }
+
+export default createStatusBlock;

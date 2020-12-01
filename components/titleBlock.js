@@ -1,4 +1,4 @@
-import { starEmptyIcon, starFillIcon, editIcon } from "../icon/icon.js";
+import { editIcon } from "../icon/icon.js";
 
 // ==== TitleBlock
 function createTitleBlock() {
@@ -30,19 +30,27 @@ function createTitleBlock() {
 	// create star
 	star = document.createElement('a');
 	star.className = 'star';
-	star.innerHTML = starEmptyIcon
+	// star.innerHTML = starEmptyIcon
 	
 	// create task title span
 	taskMassage = document.createElement('span');
 
 	titleBlock.append(checkBoxContainer, edit, star, taskMassage);
 
+	// set these as element property
+	titleBlock.editButton = edit;
+	titleBlock.checkbox = checkMark;
+	titleBlock.starButton = star;
+	titleBlock.taskMassage = taskMassage;
+
 	// use this setter when create a new task
-	titleBlock.setter = function (pushData) {
-		(pushData.mark == "mark") ? star.innerHTML = starFillIcon : star.innerHTML.starEmpty;
-		checkbox.checked = pushData.completed;
-		taskMassage.textContent = pushData.title;
-	}
+	// titleBlock.setter = function (pushData) {
+	// 	star.innerHTML = (pushData.star === true) ? starFillIcon : starEmpty;
+	// 	checkbox.checked = pushData.completed;
+	// 	taskMassage.textContent = pushData.title;
+	// }
+
+	// 需要設置的 edit, star, checkbox, message, 
 
 	// double click to open the settingBlock & buttonBlock
 	// titleBlock.ondblclick = function () {

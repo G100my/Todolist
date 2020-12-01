@@ -1,3 +1,5 @@
+import { datetimeIcon, fileIcon, commentIcon } from "../icon/icon.js";
+
 // ==== detail block
 function creatDetailBlock() {
 	let settingBlock, div, span, date, time, file, comment;

@@ -1,3 +1,5 @@
+import { starEmptyIcon, starFillIcon } from "../icon/icon.js";
+
 // ==== TitleBlock
 function createTitleBlock() {
 	let titleBlock, checkBoxContainer, checkbox, checkMark, edit, star, taskTitle;

@@ -13,6 +13,9 @@
 	--black: #000000;
 	--body-background: #E1E1E1;
 	--mark-background: #FFF2DC;
+
+	--max-width: 620px;
+	--break-point: 576px;
 }
 
 body {
@@ -22,35 +25,66 @@ body {
 	line-height: 1rem;
 }
 
+main, .nav-container {
+	max-width: var(--max-width);
+}
+
+
+
 main {
-	margin: 2.9vh 19.8vw;
+	margin: 2.9vh auto;
+}
+
+@media (max-width: 576px) {
+	main {
+		max-width: 95%;
+	}
 }
 
 /* nav */
 
 nav {
-	height: 76px;
+	/* height: 76px; */
 	background-color: var(--header-background);
-	padding: 0 17.8vw;
-	display: flex;
-	flex-direction: row;
 }
 
-nav>div {
+@media (max-width: 576px) {
+	nav {
+		font-size: smaller;
+	}
+}
+
+.nav-container {
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+}
+
+.navItem {
+	position: relative;
 	flex: 1;
-	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	cursor: pointer;
-	line-height: 71px;
-	/* 減去 border */
+	vertical-align: baseline;
+	height: 70px;
+}
+
+.navItem > span {
+	display: block;
 }
 
 .sort {
 	color: white;
 }
 
-.sort>div {
-	border-top: 5px solid black;
-	margin: 0 30.2px;
+.sort > .bottomLine {
+	background-color: #fff;
+	height: 2px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
 }
 
 /* end nav */

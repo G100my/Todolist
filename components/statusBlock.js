@@ -12,18 +12,18 @@ function createStatusBlock() {
 		while (this.firstChild) { this.removeChild(this.firstChild) }
 
 		// if no data, return undefined
-		if (date == '' && time == '' && file === undefined && comment == '') { return };
-		if (date !== '' || time !== '') {
+		if (!date && !time && !file && !comment) { return };
+		if (date || time ) {
 			deadlineSpan = document.createElement('span');
 			deadlineSpan.innerHTML = (datetimeIcon + ' ' + date + ' ' + time).trim().replace('  ', ' ');
 			statusBlock.appendChild(deadlineSpan);
 		};
-		if (file !== undefined) {
+		if (file) {
 			fileSpan = document.createElement('span');
 			fileSpan.innerHTML = fileIcon;
 			statusBlock.appendChild(fileSpan);
 		};
-		if (comment != '') {
+		if (comment) {
 			commentSpan = document.createElement('span');
 			commentSpan.innerHTML = commentIcon;
 			statusBlock.appendChild(commentSpan);

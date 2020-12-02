@@ -12,8 +12,8 @@ function createTask(incomeData) {
 		isComplete: false,
 		isStar: false,
 		taskTitle: "",
-		deadlineDate: undefined,
-		deadlineTime: undefined,
+		deadlineDate: "",
+		deadlineTime: "",
 		file: null,
 		comment: "",
 		submitButton: undefined,
@@ -61,6 +61,7 @@ function createTask(incomeData) {
 		task.deadlineTime = detailBlock.deadlineTime.value;
 		task.comment = detailBlock.comment.value;
 		reRender("all");
+		accordion.hidden = true
 	}
 
 	function cancelDetail () {
@@ -68,6 +69,7 @@ function createTask(incomeData) {
 		detailBlock.deadlineDate.value = task.deadlineDate;
 		detailBlock.deadlineTime.value = task.deadlineTime;
 		detailBlock.comment.value = task.comment;
+		accordion.hidden = true
 	}
 
 	buttonGroup = createButtonBlock();

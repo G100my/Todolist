@@ -2,7 +2,7 @@ import { datetimeIcon, fileIcon, commentIcon } from "../icon/icon.js";
 
 // ==== detail block
 function creatDetailBlock() {
-	let detailBlock, div, deadlineText, deadlineDate, deadlineTime, file, comment;
+	let detailBlock, div, deadlineText, deadlineDate, deadlineTime, file, comment, textarea;
 
 	// create settingBlock (container)
 	detailBlock = document.createElement('div');
@@ -31,8 +31,12 @@ function creatDetailBlock() {
 
 	// comment
 	comment = document.createElement('div');
-	comment.innerHTML = commentIcon + '<span>Comment</span>' +
-		'<textarea name="comment" cols="30" rows="10" placeholder="Type your memo here..."></textarea>';
+	comment.innerHTML = commentIcon + '<span>Comment</span>'
+	textarea = document.createElement('textarea');
+	textarea.placeholder = "Type your memo here...";
+	textarea.cols = 30;
+	textarea.rows = 10;
+	comment.append(textarea);
 
 	detailBlock.append(div, file, comment);
 
@@ -46,7 +50,7 @@ function creatDetailBlock() {
 
 	detailBlock.deadlineDate = deadlineDate;
 	detailBlock.deadlineTime = deadlineTime;
-	detailBlock.comment = comment;
+	detailBlock.comment = textarea;
 
 	return detailBlock;
 }

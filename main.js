@@ -27,7 +27,7 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 		addNewTaskInput.value = "";
 		starMove(newTask);
 		newTask.querySelector(".star").addEventListener("click", () => starMove(newTask));
-		cancelButton.removeEventListener(cancelHandler)
+		cancelButton.removeEventListener("click", cancelHandler)
 	}
 
 	function cancelHandler() {

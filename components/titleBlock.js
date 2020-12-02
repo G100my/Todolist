@@ -39,7 +39,7 @@ function createTitleBlock() {
 
 	// set these as element property
 	titleBlock.editButton = edit;
-	titleBlock.checkbox = checkMark;
+	titleBlock.checkbox = checkbox;
 	titleBlock.starButton = star;
 	titleBlock.taskMassage = taskMassage;
 

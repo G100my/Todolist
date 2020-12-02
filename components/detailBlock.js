@@ -41,12 +41,12 @@ function creatDetailBlock() {
 	detailBlock.append(div, file, comment);
 
 	// use it when create a new task
-	detailBlock.setDetail = function (pushData) {
-		deadlineDate.value = pushData.date;
-		deadlineTime.value = pushData.time;
-		// file.value = pushData.file;
-		comment.lastElementChild.value = pushData.comment;
-	}
+	// detailBlock.setDetail = function (pushData) {
+	// 	deadlineDate.value = pushData.date;
+	// 	deadlineTime.value = pushData.time;
+	// 	// file.value = pushData.file;
+	// 	comment.lastElementChild.value = pushData.comment;
+	// }
 
 	detailBlock.deadlineDate = deadlineDate;
 	detailBlock.deadlineTime = deadlineTime;

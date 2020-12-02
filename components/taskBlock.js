@@ -84,10 +84,7 @@ function createTask(incomeData) {
 			case "all":
 				handlerNames.forEach((caseName) => {
 					reRender(caseName);
-					console.log(caseName)
-					console.count("foreach")
 				})
-				console.warn("refresh all")
 				break;
 			
 			case "checkbox":
@@ -101,11 +98,9 @@ function createTask(incomeData) {
 				break;
 			case "deadlineDate":
 				detailBlock.deadlineDate.value = task.deadlineDate;
-				console.log(detailBlock.deadlineDate.value)
 				break;
 			case "deadlineTime":
 				detailBlock.deadlineTime.value = task.deadlineTime;
-				console.log(detailBlock.deadlineTime.value)
 				break;
 			case "comment":
 				detailBlock.comment.value = task.comment;

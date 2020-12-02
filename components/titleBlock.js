@@ -43,51 +43,6 @@ function createTitleBlock() {
 	titleBlock.starButton = star;
 	titleBlock.taskMassage = taskMassage;
 
-	// use this setter when create a new task
-	// titleBlock.setter = function (pushData) {
-	// 	star.innerHTML = (pushData.star === true) ? starFillIcon : starEmpty;
-	// 	checkbox.checked = pushData.completed;
-	// 	taskMassage.textContent = pushData.title;
-	// }
-
-	// 需要設置的 edit, star, checkbox, message, 
-
-	// double click to open the settingBlock & buttonBlock
-	// titleBlock.ondblclick = function () {
-	// 	let settingBlock, buttonBlock;
-	// 	settingBlock = this.nextElementSibling;
-	// 	buttonBlock = settingBlock.nextElementSibling;
-	// 	settingBlock.classList.remove("disappear");
-	// 	buttonBlock.classList.remove("disappear");
-	// }
-
-	// checkMark.onclick = function () {
-	// 	updateTaskList(checkBoxContainer, "completed", !(checkbox.checked))
-	// }
-
-	// edit.onclick = function () {
-	// 	let newInput, targetSpan;
-	// 	targetSpan = this.nextElementSibling.nextElementSibling;
-	// 	newInput = document.createElement('input');
-	// 	newInput.type = 'text';
-	// 	newInput.onblur = function () {
-	// 		if (this.value == '') {
-	// 			this.replaceWith(targetSpan);
-	// 			return;
-	// 		}
-	// 		targetSpan.textContent = this.value;
-	// 		updateTaskList(this, "title", this.value);
-	// 		this.replaceWith(targetSpan);
-	// 	}
-	// 	targetSpan.replaceWith(newInput);
-	// 	newInput.focus();
-	// }
-	
-	// star.onclick = function () {
-	// 	switchStarStatus(titleBlock.parentElement);
-	// 	updateTaskList(this, "mark", titleBlock.parentElement.dataset.mark);
-	// }
-
 	return titleBlock;
 }
 

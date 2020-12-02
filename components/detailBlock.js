@@ -2,23 +2,23 @@ import { datetimeIcon, fileIcon, commentIcon } from "../icon/icon.js";
 
 // ==== detail block
 function creatDetailBlock() {
-	let settingBlock, div, span, date, time, file, comment;
+	let detailBlock, div, deadlineText, deadlineDate, deadlineTime, file, comment;
 
 	// create settingBlock (container)
-	settingBlock = document.createElement('div');
-	settingBlock.className = "setting-block";
+	detailBlock = document.createElement('div');
+	detailBlock.className = "setting-block";
 
 	// Deadline
 	div = document.createElement('div');
 	div.innerHTML = datetimeIcon;
-	span = document.createElement('span');
-	span.textContent = 'Deadline';
-	date = document.createElement('input');
-	date.type = 'date';
-	time = document.createElement('input');
-	time.type = 'time';
+	deadlineText = document.createElement('span');
+	deadlineText.textContent = 'Deadline';
+	deadlineDate = document.createElement('input');
+	deadlineDate.type = 'date';
+	deadlineTime = document.createElement('input');
+	deadlineTime.type = 'time';
 
-	div.append(span, document.createElement('br'), date, time);
+	div.append(deadlineText, document.createElement('br'), deadlineDate, deadlineTime);
 
 	// file
 	file = document.createElement('div');
@@ -34,16 +34,21 @@ function creatDetailBlock() {
 	comment.innerHTML = commentIcon + '<span>Comment</span>' +
 		'<textarea name="comment" cols="30" rows="10" placeholder="Type your memo here..."></textarea>';
 
-	settingBlock.append(div, file, comment);
+	detailBlock.append(div, file, comment);
 
 	// use it when create a new task
-	settingBlock.setter = function (pushData) {
-		date.value = pushData.date;
-		time.value = pushData.time;
+	detailBlock.setDetail = function (pushData) {
+		deadlineDate.value = pushData.date;
+		deadlineTime.value = pushData.time;
 		// file.value = pushData.file;
 		comment.lastElementChild.value = pushData.comment;
 	}
-	return settingBlock;
+
+	detailBlock.deadlineDate = deadlineDate;
+	detailBlock.deadlineTime = deadlineTime;
+	detailBlock.comment = comment;
+
+	return detailBlock;
 }
 
 export default creatDetailBlock;

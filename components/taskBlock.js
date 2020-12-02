@@ -9,7 +9,7 @@ function createTask(incomeData) {
 	
 	task = Object.assign(document.createElement('div'), {
 		id: "",
-		isComplate: false,
+		isComplete: false,
 		isStar: false,
 		taskTitle: "",
 		deadlineDate: undefined,
@@ -24,7 +24,7 @@ function createTask(incomeData) {
 	task.getData = function () {
 		return {
 			id: this.id,
-			isComplate: this.isComplate,
+			isComplete: this.isComplete,
 			isStar: this.isStar,
 			taskTitle: this.taskTitle,
 			deadlineDate: this.deadlineDate,
@@ -36,7 +36,7 @@ function createTask(incomeData) {
 
 	titleBlock = createTitleBlock();
 	titleBlock.checkbox.addEventListener("input", function () {
-		task.isComplate = this.checked;
+		task.isComplete = this.checked;
 	})
 	titleBlock.starButton.addEventListener("click", function () {
 		task.isStar = !task.isStar;
@@ -103,7 +103,7 @@ function createTask(incomeData) {
 				break;
 			
 			case "checkbox":
-				titleBlock.checkbox.checked = task.isComplate;
+				titleBlock.checkbox.checked = task.isComplete;
 				break;
 			case "star":
 				titleBlock.starButton.innerHTML = (task.isStar) ? starFillIcon : starEmptyIcon;

@@ -8,7 +8,7 @@ function createTask(incomeData) {
 	let task, titleBlock, statusBlock, detailBlock, buttonGroup, accordion;
 	
 	task = Object.assign(document.createElement('div'), {
-		id: Date.now(),
+		id: "",
 		isComplate: false,
 		isStar: false,
 		taskTitle: "",
@@ -21,7 +21,18 @@ function createTask(incomeData) {
 	});
 	task.className = "task-container";
 	task.draggable = true;
-	
+	task.getData = function () {
+		return {
+			id: this.id,
+			isComplate: this.isComplate,
+			isStar: this.isStar,
+			taskTitle: this.taskTitle,
+			deadlineDate: this.deadlineDate,
+			deadlineTime: this.deadlineTime,
+			file: this.file,
+			comment: this.comment,
+		}
+	}
 
 	titleBlock = createTitleBlock();
 	titleBlock.checkbox.addEventListener("input", function () {
@@ -44,29 +55,35 @@ function createTask(incomeData) {
 
 	detailBlock = creatDetailBlock();
 
-	buttonGroup = createButtonBlock();
-	buttonGroup.submitButton.addEventListener("click", function () {
+	function updateData () {
+		task.taskTitle = titleBlock.taskMassage.textContent;
 		task.deadlineDate = detailBlock.deadlineDate.value;
 		task.deadlineTime = detailBlock.deadlineTime.value;
 		task.comment = detailBlock.comment.value;
 		reRender("all");
-	});
-	buttonGroup.cancelButton.addEventListener("click", function () {
+	}
+
+	function cancelDetail () {
+		titleBlock.taskMassage.textContent = task.taskTitle;
 		detailBlock.deadlineDate.value = task.deadlineDate;
 		detailBlock.deadlineTime.value = task.deadlineTime;
 		detailBlock.comment.value = task.comment;
-	});
+	}
+
+	buttonGroup = createButtonBlock();
+	buttonGroup.submitButton.addEventListener("click", updateData);
+	buttonGroup.cancelButton.addEventListener("click", cancelDetail);
 
 	accordion = document.createElement('div')
+	accordion.className = "accordion";
 	accordion.append(detailBlock, buttonGroup)
-	accordion.hidden = true;
 
 	task.append(titleBlock, accordion);
 
 	if (incomeData) {
 		task = Object.assign(task, incomeData);
-		reRender("all");
 	}
+	reRender("all");
 
 	function reRender(handler) {
 		const handlerNames = [

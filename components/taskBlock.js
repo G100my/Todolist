@@ -8,18 +8,16 @@ function createTask(incomeData) {
 	let task, titleBlock, statusBlock, detailBlock, buttonGroup, accordion;
 	
 	task = Object.assign(document.createElement('div'), {
-		taskData: {
-			id: 0,
-			isComplate: false,
-			isStar: false,
-			taskTitle: undefined,
-			deadlineDate: undefined,
-			deadlineTime: undefined,
-			file: null,
-			comment: undefined,
-			submitButton: undefined,
-			cancelButton: undefined,
-		}
+		id: Date.now(),
+		isComplate: false,
+		isStar: false,
+		taskTitle: "",
+		deadlineDate: undefined,
+		deadlineTime: undefined,
+		file: null,
+		comment: "",
+		submitButton: undefined,
+		cancelButton: undefined,
 	});
 	task.className = "task-container";
 	task.draggable = true;

@@ -34,7 +34,7 @@ function createButtonBlock() {
 
 		// change statusBlock's status display
 		statusBlock = buttonBlock.previousElementSibling.previousElementSibling.lastElementChild;
-		statusBlock.reset(pushData);
+		statusBlock.setStatus(pushData);
 	}
 
 	// return all the settingBlock's value

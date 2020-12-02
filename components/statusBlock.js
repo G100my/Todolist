@@ -7,23 +7,23 @@ function createStatusBlock() {
 	statusBlock = document.createElement('div');
 	statusBlock.className = "status-block";
 
-	statusBlock.setStatus = function (incomeData) {
+	statusBlock.setStatus = function (date, time, file, comment) {
 		// remove all children element, reset child one by one.
 		while (this.firstChild) { this.removeChild(this.firstChild) }
 
 		// if no data, return undefined
-		if (incomeData.date == '' && incomeData.time == '' && incomeData.file === undefined && incomeData.comment == '') { return };
-		if (incomeData.date !== '' || incomeData.time !== '') {
+		if (date == '' && time == '' && file === undefined && comment == '') { return };
+		if (date !== '' || time !== '') {
 			deadlineSpan = document.createElement('span');
-			deadlineSpan.innerHTML = (datetimeIcon + ' ' + incomeData.date + ' ' + incomeData.time).trim().replace('  ', ' ');
+			deadlineSpan.innerHTML = (datetimeIcon + ' ' + date + ' ' + time).trim().replace('  ', ' ');
 			statusBlock.appendChild(deadlineSpan);
 		};
-		if (incomeData.file !== undefined) {
+		if (file !== undefined) {
 			fileSpan = document.createElement('span');
 			fileSpan.innerHTML = fileIcon;
 			statusBlock.appendChild(fileSpan);
 		};
-		if (incomeData.comment != '') {
+		if (comment != '') {
 			commentSpan = document.createElement('span');
 			commentSpan.innerHTML = commentIcon;
 			statusBlock.appendChild(commentSpan);

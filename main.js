@@ -3,14 +3,14 @@ import {updateTaskList} from "./store/store.js";
 
 const starArea = document.getElementById("star-task-area");
 const normalArea = document.getElementById("normal-task-area");
+const addNewTaskInput = document.getElementById("add-new-task-block");
 
-const addNewTaskInput = document.getElementById('add-new-task-block')
-addNewTaskInput.addEventListener('keydown', function (event) {
-	if (event.key !== "Enter") return
+addNewTaskInput.addEventListener("keydown", function (event) {
+	if (event.key !== "Enter") return;
 	const initialData = {
 		id: Date.now(),
 		taskTitle: addNewTaskInput.value,
-	}
+	};
 	const newTask = createTask(initialData);
 	newTask.querySelector(".accordion").hidden = false;
 	const submitButton = newTask.querySelector(".submit-button");
@@ -24,7 +24,7 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 		addNewTaskInput.value = "";
 		starMove(newTask);
 		newTask.querySelector(".star").addEventListener("click", () => starMove(newTask));
-		cancelButton.removeEventListener("click", cancelHandler)
+		cancelButton.removeEventListener("click", cancelHandler);
 	}
 
 	function cancelHandler() {
@@ -34,20 +34,16 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 	}
 
 	submitButton.innerHTML = "+ Add";
-	submitButton.addEventListener("click", addHandler, {once: true})
-	cancelButton.addEventListener("click", cancelHandler)
-	this.parentNode.insertBefore(newTask, this)
+	submitButton.addEventListener("click", addHandler, {once: true});
+	cancelButton.addEventListener("click", cancelHandler);
+	this.parentNode.insertBefore(newTask, this);
 	this.hidden = true;
 });
 
 function starMove(task) {
-	if (task.isStar) starArea.append(task)
+	if (task.isStar) starArea.append(task);
 	else normalArea.append(task);
 }
-
-
-
-
 
 // const addTaskTitleInput = document.getElementById('add-new-task-block');
 // const taskDisplayArea = document.getElementById('normal-task-area');
@@ -66,7 +62,6 @@ function starMove(task) {
 // }
 
 // ==== taskContainer
-
 
 // ==== feature function
 
@@ -117,8 +112,6 @@ function starMove(task) {
 // 	}
 // }
 
-
-
 // ==== sort
 
 // let navItems = document.querySelector(".nav-container").children;
@@ -153,7 +146,6 @@ function starMove(task) {
 // navItems[1].onclick = function () { sort(true, true); switchStyle(this) }
 // // completed
 // navItems[2].onclick = function () { sort(false, true); switchStyle(this) }
-
 
 // ==== drag
 
@@ -201,7 +193,6 @@ function starMove(task) {
 // taskDisplayArea.ondrop = function (event) {
 // 	let target, sourceItem, sourceIndex, targetIndex;
 
-
 // 	target = getDragTarget(event);
 // 	sourceIndex = taskList.findIndex((i) => { return i.id == dragItem.id });
 // 	sourceItem = taskList.splice(sourceIndex, 1)[0];
@@ -227,7 +218,7 @@ function starMove(task) {
 
 window.onload = function () {
 	this.taskList = [];
-	let string = localStorage.getItem("taskList")
+	let string = localStorage.getItem("taskList");
 	let storage = JSON.parse(string);
 
 	if (Array.isArray(storage)) {
@@ -259,7 +250,6 @@ window.onload = function () {
 // 	inputTitleBlock.getElementsByClassName('star')[0].onclick = () => switchStarStatus(inputContainer);
 // 	inputTitleBlock.getElementsByClassName("check-mark")[0].onclick = null;
 // 	// test
-
 
 // 	inputSettingBlock = creatDetailBlock();
 // 	inputButtonGroup = createButtonBlock();

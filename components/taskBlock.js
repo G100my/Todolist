@@ -86,7 +86,8 @@ function createTask(incomeData) {
 
 	accordion = document.createElement('div')
 	accordion.className = "accordion";
-	accordion.append(detailBlock, buttonGroup)
+	accordion.append(detailBlock, buttonGroup);
+	accordion.hidden = true;
 
 	task.append(titleBlock, accordion);
 

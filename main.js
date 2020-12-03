@@ -13,6 +13,7 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 		taskTitle: addNewTaskInput.value,
 	}
 	const newTask = createTask(initialData);
+	newTask.querySelector(".accordion").hidden = false;
 	const submitButton = newTask.querySelector(".submit-button");
 	const cancelButton = newTask.querySelector(".cancel-button");
 

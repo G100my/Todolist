@@ -14,11 +14,6 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 	const submitButton = newTask.querySelector(".submit-button");
 	const cancelButton = newTask.querySelector(".cancel-button");
 
-	function starMove(task) {
-		if (task.isStar) starArea.append(task)
-		else normalArea.append(task);
-	}
-
 	function addHandler() {
 		// starArea.append(newTask);
 		newTask.querySelector(".accordion").hidden = true;
@@ -43,6 +38,10 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 	this.hidden = true;
 });
 
+function starMove(task) {
+	if (task.isStar) starArea.append(task)
+	else normalArea.append(task);
+}
 
 
 

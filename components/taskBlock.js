@@ -34,17 +34,24 @@ function createTask(incomeData) {
 		}
 	}
 
+	if (incomeData) {
+		task = Object.assign(task, incomeData);
+	}
+
 	titleBlock = createTitleBlock();
 	titleBlock.checkbox.addEventListener("input", function () {
 		task.isComplete = this.checked;
+		emitUpdate();
 	})
 	titleBlock.starButton.addEventListener("click", function () {
 		task.isStar = !task.isStar;
 		reRender("star");
+		emitUpdate();
 	})
 	titleBlock.taskMassage.addEventListener("input", function () {
 		task.taskTitle = this.textContent;
 		reRender("taskMassage");
+		emitUpdate();
 	})
 	titleBlock.editButton.addEventListener("click", function () {
 		accordion.hidden = !accordion.hidden
@@ -61,6 +68,7 @@ function createTask(incomeData) {
 		task.deadlineTime = detailBlock.deadlineTime.value;
 		task.comment = detailBlock.comment.value;
 		reRender("all");
+		emitUpdate();
 		accordion.hidden = true
 	}
 
@@ -69,7 +77,7 @@ function createTask(incomeData) {
 		detailBlock.deadlineDate.value = task.deadlineDate;
 		detailBlock.deadlineTime.value = task.deadlineTime;
 		detailBlock.comment.value = task.comment;
-		accordion.hidden = true
+		accordion.hidden = true;
 	}
 
 	buttonGroup = createButtonBlock();
@@ -82,10 +90,15 @@ function createTask(incomeData) {
 
 	task.append(titleBlock, accordion);
 
-	if (incomeData) {
-		task = Object.assign(task, incomeData);
-	}
 	reRender("all");
+
+
+	function emitUpdate() {
+		console.log(task)
+		const Data = task.getData();
+		const taskUpdateEvent = new CustomEvent("taskUpdate", {detail:Data});
+		window.dispatchEvent(taskUpdateEvent);
+	}
 
 	function reRender(handler) {
 		const handlerNames = [

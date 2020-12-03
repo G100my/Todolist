@@ -10,6 +10,7 @@ const addNewTaskInput = document.getElementById('add-new-task-block')
 addNewTaskInput.addEventListener('keydown', function (event) {
 	if (event.key !== "Enter") return
 	const initialData = {
+		id: Date.now(),
 		taskTitle: addNewTaskInput.value,
 	}
 	const newTask = createTask(initialData);
@@ -19,7 +20,6 @@ addNewTaskInput.addEventListener('keydown', function (event) {
 
 	function addHandler() {
 		// starArea.append(newTask);
-		newTask.id = Date.now(),
 		newTask.querySelector(".accordion").hidden = true;
 		this.innerHTML = "+ Save";
 		addNewTaskInput.hidden = false;

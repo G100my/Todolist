@@ -1,4 +1,7 @@
 import createTask from "./components/taskBlock.js";
+import { findTaskIndex, updateTaskList } from "./store/store.js";
+
+let taskList = [];
 
 const starArea = document.getElementById("star-task-area");
 const normalArea = document.getElementById("normal-task-area");
@@ -115,22 +118,7 @@ function starMove(task) {
 // 	}
 // }
 
-// function updateTaskList(element, key, value) {
-// 	let id, index;
-// 	id = element.parentElement.parentElement.id;
-// 	if (id === "js-input-container") {
-// 		return;
-// 	}
 
-// 	index = findI(id)
-// 	if (key) { taskList[index][key] = value }
-// 	else { taskList[index] = value };
-// 	saveToLocalStorage();
-// }
-
-// function saveToLocalStorage() {
-// 	localStorage.setItem("taskList", JSON.stringify(taskList));
-// }
 
 // ==== sort
 
@@ -237,26 +225,24 @@ function starMove(task) {
 // };
 
 // ==== onload、create inputContainer
-// window.onload = function () {
+window.onload = function () {
+	// load localStorage's taskList, create task items, add into taskDisplayArea.
+	let storage;
+	storage = JSON.parse(localStorage.getItem("taskList"));
+	if (storage) {
+		this.taskList = storage;
+		this.taskList.forEach(taskData => {
+			const task = createTask(taskData);
+			starMove(task);
+		})
+	}
 
-// 	// load localStorage's taskList, create task items, add into taskDisplayArea.
-// 	let storage, i;
-// 	storage = this.JSON.parse(this.localStorage.getItem("taskList"));
-// 	if (storage) {
-// 		taskList = storage;
-// 		for (i = 0; i < storage.length; i++) {
-// 			let data, task;
-// 			data = storage[i];
-// 			task = createTaskContainer(data)
-// 			task.id = data.id;
-			
-// 			if (data.mark == "mark") {
-// 				starDisplayArea.appendChild(task);
-// 				continue;
-// 			}
-// 			taskDisplayArea.append(task);
-// 		}
-// 	};
+	window.addEventListener("taskUpdate", function (event) {
+		updateTaskList(taskList, event.detail);
+		localStorage.setItem("taskList", JSON.stringify(taskList))
+		console.warn("catch taskUpdate event");
+	})
+};
 
 // 	// create inputBlock, diffirent from createTaskContainer()
 

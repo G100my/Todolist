@@ -328,11 +328,11 @@ input[type="file"] {
 
 /* other */
 
-section[data-mark="mark"]>div[class="title-block"] {
+section#star-task-area > div[class="task-container"] {
 	background-color: var(--mark-background);
 }
 
-section[data-mark="mark"]>div[class="title-block"]>a[class="star"] {
+section#star-task-area a.star {
 	color: var(--star);
 }
 

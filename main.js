@@ -46,8 +46,8 @@ function starMove(task) {
 }
 
 // const addTaskTitleInput = document.getElementById('add-new-task-block');
-// const taskDisplayArea = document.getElementById('normal-task-area');
-// const starDisplayArea = document.getElementById('star-task-area');
+// const normalArea = document.getElementById('normal-task-area');
+// const starArea = document.getElementById('star-task-area');
 // assigned in window.onload
 // let inputContainer;
 
@@ -99,16 +99,16 @@ function starMove(task) {
 // 		})(sourceIndex);
 
 // 		if (targetId == -1) {
-// 			taskDisplayArea.append(taskContainer);
+// 			normalArea.append(taskContainer);
 // 			return
 // 		};
 // 		TargetElement = document.getElementById(targetId);
-// 		taskDisplayArea.insertBefore(taskContainer, TargetElement);
+// 		normalArea.insertBefore(taskContainer, TargetElement);
 
 // 	} else {
 // 		star.innerHTML = starFillIcon;
 // 		taskContainer.dataset.mark = "mark";
-// 		starDisplayArea.append(taskContainer);
+// 		starArea.append(taskContainer);
 // 	}
 // }
 
@@ -120,7 +120,7 @@ function starMove(task) {
 // // value => checkbox Value, mode => just for control
 // function sort(value, mode) {
 // 	let i, list, checkBox;
-// 	list = taskDisplayArea.children;
+// 	list = normalArea.children;
 // 	for (i = 0; i < list.length; i++) {
 // 		checkBox = list[i].getElementsByClassName("checkBox")[0];
 // 		if (checkBox.checked == value && mode) {
@@ -149,70 +149,69 @@ function starMove(task) {
 
 // ==== drag
 
-// let tmpTarget;
+let tmpTarget, dragItem;
 
-// function getDragTarget(event) {
-// 	if (event.target.id == "normal-task-area") return;
-// 	if (event.target.hasAttribute("draggable")) return event.target;
-// 	for (let i = 0; i < event.path.length; i++) {
-// 		if (event.path[i].hasAttribute("draggable")) {
-// 			return event.path[i];
-// 		}
-// 	}
-// }
+function getDragTarget(event) {
+	if (event.target.id == "normal-task-area") return;
+	if (event.target.hasAttribute("draggable")) return event.target;
+	for (let i = 0; i < event.path.length; i++) {
+		if (event.path[i].hasAttribute("draggable")) {
+			return event.path[i];
+		}
+	}
+}
 
-// taskDisplayArea.ondragstart = function (event) {
-// 	let i;
-// 	dragItem = getDragTarget(event);
-// };
+normalArea.ondragstart = function (event) {
+	dragItem = getDragTarget(event);
+};
 
-// taskDisplayArea.ondragenter = function (event) {
-// 	let target = getDragTarget(event);
-// 	if (target && tmpTarget != target) {
-// 		target.classList.add("drag-focus");
-// 		if (tmpTarget) tmpTarget.classList.remove("drag-focus");
-// 		tmpTarget = target;
-// 	}
-// };
+normalArea.ondragenter = function (event) {
+	let target = getDragTarget(event);
+	if (target && tmpTarget != target) {
+		target.classList.add("drag-focus");
+		if (tmpTarget) tmpTarget.classList.remove("drag-focus");
+		tmpTarget = target;
+	}
+};
 
-// taskDisplayArea.ondragover = function (event) {
-// 	let target = getDragTarget(event);
-// 	if (target == taskDisplayArea.lastElementChild) {
-// 		if (event.pageY > target.offsetTop + target.offsetHeight / 2) {
-// 			target.classList.remove("drag-focus");
-// 			target.classList.add("drag-focus-last");
-// 		} else {
-// 			target.classList.add("drag-focus");
-// 			target.classList.remove("drag-focus-last");
-// 		}
-// 	}
-// 	event.preventDefault();
-// };
-// taskDisplayArea.ondragleave = function (event) { event.preventDefault() };
+normalArea.ondragover = function (event) {
+	let target = getDragTarget(event);
+	if (target == normalArea.lastElementChild) {
+		if (event.pageY > target.offsetTop + target.offsetHeight / 2) {
+			target.classList.remove("drag-focus");
+			target.classList.add("drag-focus-last");
+		} else {
+			target.classList.add("drag-focus");
+			target.classList.remove("drag-focus-last");
+		}
+	}
+	event.preventDefault();
+};
+normalArea.ondragleave = function (event) { event.preventDefault() };
 
-// taskDisplayArea.ondrop = function (event) {
-// 	let target, sourceItem, sourceIndex, targetIndex;
+normalArea.ondrop = function (event) {
+	let target, sourceItem, sourceIndex, targetIndex;
 
-// 	target = getDragTarget(event);
-// 	sourceIndex = taskList.findIndex((i) => { return i.id == dragItem.id });
-// 	sourceItem = taskList.splice(sourceIndex, 1)[0];
+	target = getDragTarget(event);
+	sourceIndex = taskList.findIndex((i) => { return i.id == dragItem.id });
+	sourceItem = taskList.splice(sourceIndex, 1)[0];
 
-// 	if (target == taskDisplayArea.lastElementChild &&
-// 		event.pageY > target.offsetTop + target.offsetHeight / 2) {
-// 		dragItem.remove();
-// 		taskDisplayArea.append(dragItem);
-// 		targetIndex = taskList.length + 1;
-// 		target.classList.remove("drag-focus-last");
-// 	} else if (target.hasAttribute("draggable")) {
-// 		taskDisplayArea.insertBefore(dragItem, target);
-// 		targetIndex = taskList.findIndex((i) => { return i.id == target.id });
-// 	};
+	if (target == normalArea.lastElementChild &&
+		event.pageY > target.offsetTop + target.offsetHeight / 2) {
+		dragItem.remove();
+		normalArea.append(dragItem);
+		targetIndex = taskList.length + 1;
+		target.classList.remove("drag-focus-last");
+	} else if (target.hasAttribute("draggable")) {
+		normalArea.insertBefore(dragItem, target);
+		targetIndex = taskList.findIndex((i) => { return i.id == target.id });
+	};
 
-// 	target.classList.remove("drag-focus");
+	target.classList.remove("drag-focus");
 
-// 	taskList.splice(targetIndex, 0, sourceItem);
-// 	saveToLocalStorage();
-// };
+	taskList.splice(targetIndex, 0, sourceItem);
+	// saveToLocalStorage();
+};
 
 // ==== onload、create inputContainer
 
@@ -275,11 +274,11 @@ window.onload = function () {
 // 		newTask.id = id;
 
 // 		if (newTask.dataset.mark == "mark") {
-// 			starDisplayArea.appendChild(newTask);
+// 			starArea.appendChild(newTask);
 // 			return;
 // 		}
 
-// 		taskDisplayArea.prepend(newTask);
+// 		normalArea.prepend(newTask);
 // 	}
 
 // 	cancelAddButton = inputButtonGroup.firstElementChild;
@@ -288,5 +287,5 @@ window.onload = function () {
 
 // 	inputContainer.append(inputTitleBlock, inputSettingBlock, inputButtonGroup);
 
-// 	document.getElementById('js-main').insertBefore(inputContainer, taskDisplayArea);
+// 	document.getElementById('js-main').insertBefore(inputContainer, normalArea);
 // }

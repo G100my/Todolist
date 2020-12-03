@@ -1,7 +1,5 @@
 import createTask from "./components/taskBlock.js";
-import { findTaskIndex, updateTaskList } from "./store/store.js";
-
-let taskList = [];
+import {updateTaskList} from "./store/store.js";
 
 const starArea = document.getElementById("star-task-area");
 const normalArea = document.getElementById("normal-task-area");
@@ -226,23 +224,24 @@ function starMove(task) {
 // };
 
 // ==== onload、create inputContainer
+
 window.onload = function () {
-	// load localStorage's taskList, create task items, add into taskDisplayArea.
-	let storage;
-	storage = JSON.parse(localStorage.getItem("taskList"));
-	if (storage) {
+	this.taskList = [];
+	let string = localStorage.getItem("taskList")
+	let storage = JSON.parse(string);
+
+	if (Array.isArray(storage)) {
 		this.taskList = storage;
-		this.taskList.forEach(taskData => {
+		this.taskList.forEach((taskData) => {
 			const task = createTask(taskData);
 			starMove(task);
-		})
+		});
 	}
 
 	window.addEventListener("taskUpdate", function (event) {
-		updateTaskList(taskList, event.detail);
-		localStorage.setItem("taskList", JSON.stringify(taskList))
-		console.warn("catch taskUpdate event");
-	})
+		localStorage.setItem("taskList", JSON.stringify(updateTaskList(this.taskList, event.detail)));
+		// console.table(this.taskList);
+	});
 };
 
 // 	// create inputBlock, diffirent from createTaskContainer()

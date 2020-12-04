@@ -43,14 +43,7 @@ function bindDrag(parent, callback) {
 		if (tmpTarget === dragItem || tmpTarget === undefined) return;
 
 		isUpsideToDownside = overPreviousY < event.pageY;
-		console.log(isUpsideToDownside);
 		overItem.style.margin = isUpsideToDownside ? `0 0 ${overItem.offsetHeight}px` : `${overItem.offsetHeight}px 0 0`;
-	}
-
-	function dragleaveHandler(event) {
-		event.preventDefault();
-		const tmpTarget = targetFilter(event);
-		if (tmpTarget === dragItem || tmpTarget === undefined) return;
 	}
 
 	function dropHandler(event) {
@@ -58,7 +51,7 @@ function bindDrag(parent, callback) {
 		event.preventDefault();
 		const insertBeforeItem = isUpsideToDownside ? overItem.nextSibling : overItem;
 		// this.insertBefore(dragItem, insertBeforeItem); change way to Data-Driven
-		
+
 		callback(dragItem, insertBeforeItem);
 	}
 
@@ -72,7 +65,6 @@ function bindDrag(parent, callback) {
 	parent.addEventListener("dragstart", dragstartHandler);
 	parent.addEventListener("dragenter", dragenterHandler);
 	parent.addEventListener("dragover", dragoverHandler);
-	parent.addEventListener("dragleave", dragleaveHandler);
 	parent.addEventListener("drop", dropHandler);
 	parent.addEventListener("dragend", dragendHandler);
 }

@@ -7,7 +7,6 @@ const normalArea = document.getElementById("normal-task-area");
 const addNewTaskInput = document.getElementById("add-new-task-block");
 var taskList = [];
 
-
 addNewTaskInput.addEventListener("keydown", function (event) {
 	if (event.key !== "Enter") return;
 	const initialData = {
@@ -47,14 +46,15 @@ function starMove(task) {
 	if (task.isStar) starArea.append(task);
 	else normalArea.append(task);
 }
-
 // ==== drag - Event Delegation
 
 bindDrag(normalArea, () => {
-	let tmp = []
+	let tmp = [];
 	let tmpData;
-	normalArea.childNodes.forEach((item) => {tmp.push(item.id)})
-	tmpData = tmp.map(id => taskList.find(item => item.id === id));
+	normalArea.childNodes.forEach((item) => {
+		tmp.push(item.id);
+	});
+	tmpData = tmp.map((id) => taskList.find((item) => item.id === id));
 	taskList = tmpData;
 	localStorage.setItem("taskList", JSON.stringify(taskList));
 });
@@ -66,18 +66,18 @@ window.onload = function () {
 	let storage = JSON.parse(string);
 
 	if (Array.isArray(storage)) {
-		this.taskList = storage;
-		this.taskList.forEach((taskData) => {
+		taskList = storage;
+		taskList.forEach((taskData) => {
 			const task = createTask(taskData);
 			starMove(task);
+			task.querySelector(".star").addEventListener("click", () => starMove(task));
 		});
 	}
 
 	window.addEventListener("taskUpdate", function (event) {
-		localStorage.setItem("taskList", JSON.stringify(updateTaskList(this.taskList, event.detail)));
+		localStorage.setItem("taskList", JSON.stringify(updateTaskList(taskList, event.detail)));
 		// console.table(this.taskList);
 	});
 };
 
 // 	// create inputBlock, diffirent from createTaskContainer()
-

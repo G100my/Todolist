@@ -4,7 +4,7 @@ function bindDrag(parent, callback) {
 	let dragItem, overItem, isUpsideToDownside, currentRangeMinY, currentRangeMaxY, overPreviousY;
 
 	function targetFilter(event) {
-		if (event.target.id == "normal-task-area") return;
+		if (event.target === parent) return;
 		if (event.target.hasAttribute("draggable")) return event.target;
 		for (let i = 0; i < event.path.length; i++) {
 			if (event.path[i].hasAttribute("draggable")) {
@@ -18,7 +18,7 @@ function bindDrag(parent, callback) {
 		currentRangeMinY = dragItem.offsetTop;
 		currentRangeMaxY = dragItem.offsetTop + dragItem.offsetHeight;
 		dragItem.style.opacity = 0.3;
-		dragItem.style.transform = `scale(0.8)`;
+		dragItem.style.transform = `scale(0.95)`;
 	}
 
 	function dragenterHandler(event) {

@@ -48,15 +48,15 @@ function starMove(task) {
 }
 // ==== drag - Event Delegation
 
-bindDrag(normalArea, () => {
-	let tmp = [];
-	let tmpData;
-	normalArea.childNodes.forEach((item) => {
-		tmp.push(item.id);
-	});
-	tmpData = tmp.map((id) => taskList.find((item) => item.id === id));
-	taskList = tmpData;
-	localStorage.setItem("taskList", JSON.stringify(taskList));
+bindDrag(normalArea, (dragItem, insertBeforeItem) => {
+	console.table(taskList)
+	const dragItemDataIndex = taskList.findIndex(item => item.id === dragItem.id);
+	const dragItemData = taskList.splice(dragItemDataIndex, 1)[0];
+	if (insertBeforeItem === null) taskList.push(dragItemData)
+	else {
+		const insertBeforeIndex = taskList.findIndex(item => item.id === insertBeforeItem.id);
+		taskList.splice(insertBeforeIndex, 0, dragItemData)
+	}
 });
 
 // ==== onload、create inputContainer

@@ -1,8 +1,7 @@
 // ==== drag - Event Delegation
 
 function bindDrag(parent, callback) {
-	let dragItem, overItem, isUpsideToDownside, currentRangeMinY, currentRangeMaxY, overPreviousY;
-
+	let dragItem, overItem, isUpsideToDownside, currentRangeMinY, currentRangeMaxY, overPreviousY, parentId;
 	function targetFilter(event) {
 		if (event.target === parent) return;
 		if (event.target.hasAttribute("draggable")) return event.target;
@@ -14,6 +13,7 @@ function bindDrag(parent, callback) {
 	}
 
 	function dragstartHandler(event) {
+		parentId = parent.id;
 		dragItem = event.target;
 		currentRangeMinY = dragItem.offsetTop;
 		currentRangeMaxY = dragItem.offsetTop + dragItem.offsetHeight;
@@ -22,6 +22,7 @@ function bindDrag(parent, callback) {
 	}
 
 	function dragenterHandler(event) {
+		if (parent.id !== parentId) return;
 		if (event.pageY > currentRangeMinY && event.pageY < currentRangeMaxY) return;
 
 		const tmpTarget = targetFilter(event);
@@ -36,6 +37,7 @@ function bindDrag(parent, callback) {
 	}
 
 	function dragoverHandler(event) {
+		if (parent.id !== parentId) return;
 		event.preventDefault();
 		const tmpTarget = targetFilter(event);
 		if (tmpTarget === dragItem || tmpTarget === undefined) return;
@@ -52,6 +54,7 @@ function bindDrag(parent, callback) {
 	}
 
 	function dropHandler(event) {
+		if (parent.id !== parentId) return;
 		event.preventDefault();
 		const insertBeforeItem = isUpsideToDownside ? overItem.nextSibling : overItem;
 		// this.insertBefore(dragItem, insertBeforeItem); change way to Data-Driven
@@ -60,8 +63,10 @@ function bindDrag(parent, callback) {
 	}
 
 	function dragendHandler() {
+		if (parent.id !== parentId) return;
 		dragItem.removeAttribute("style");
 		overItem.removeAttribute("style");
+		parentId = undefined;
 	}
 
 	parent.addEventListener("dragstart", dragstartHandler);

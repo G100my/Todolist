@@ -5,6 +5,9 @@ import bindDrag from "./utility/drag.js";
 const starArea = document.getElementById("star-task-area");
 const normalArea = document.getElementById("normal-task-area");
 const addNewTaskInput = document.getElementById("add-new-task-block");
+const myTasksButton = document.getElementById("my-tasks");
+const inProgressButton = document.getElementById("in-progress");
+const completedButton = document.getElementById("completed");
 var taskList = [];
 
 addNewTaskInput.addEventListener("keydown", function (event) {
@@ -76,7 +79,30 @@ function dealDragOrder(dragItem, insertBeforeItem) {
 bindDrag(normalArea, dealDragOrder);
 bindDrag(starArea, dealDragOrder);
 
-// ==== onload、create inputContainer
+// ==== sort button
+
+myTasksButton.addEventListener("click", () => {
+	normalArea.textContent = "";
+	starArea.textContent = "";
+	taskList.forEach(item => {
+		starMove(createTask(item))
+	})
+})
+inProgressButton.addEventListener("click", () => {
+	normalArea.textContent = "";
+	starArea.textContent = "";
+	taskList.forEach(item => {
+		if (!item.isComplete) starMove(createTask(item))
+	})
+})
+completedButton.addEventListener("click", () => {
+	normalArea.textContent = "";
+	starArea.textContent = "";
+	taskList.forEach(item => {
+		if (item.isComplete) starMove(createTask(item))
+	})
+})
+// ==== onload
 
 window.onload = function () {
 	let string = localStorage.getItem("taskList");

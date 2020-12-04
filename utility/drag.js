@@ -53,7 +53,9 @@ function bindDrag(parent, callback) {
 
 	function dropHandler(event) {
 		event.preventDefault();
-		this.insertBefore(dragItem, isUpsideToDownside ? overItem.nextSibling : overItem);
+		const indexBefore = isUpsideToDownside ? overItem.nextSibling : overItem;
+		this.insertBefore(dragItem, indexBefore);
+		
 		callback();
 	}
 

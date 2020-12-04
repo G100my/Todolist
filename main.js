@@ -1,9 +1,12 @@
 import createTask from "./components/taskBlock.js";
 import {updateTaskList} from "./store/store.js";
+import bindDrag from "./utility/drag.js";
 
 const starArea = document.getElementById("star-task-area");
 const normalArea = document.getElementById("normal-task-area");
 const addNewTaskInput = document.getElementById("add-new-task-block");
+var taskList = [];
+
 
 addNewTaskInput.addEventListener("keydown", function (event) {
 	if (event.key !== "Enter") return;
@@ -47,12 +50,18 @@ function starMove(task) {
 
 // ==== drag - Event Delegation
 
-bindDrag(normalArea, () => {console.log("hi")});
+bindDrag(normalArea, () => {
+	let tmp = []
+	let tmpData;
+	normalArea.childNodes.forEach((item) => {tmp.push(item.id)})
+	tmpData = tmp.map(id => taskList.find(item => item.id === id));
+	taskList = tmpData;
+	localStorage.setItem("taskList", JSON.stringify(taskList));
+});
 
 // ==== onload、create inputContainer
 
 window.onload = function () {
-	this.taskList = [];
 	let string = localStorage.getItem("taskList");
 	let storage = JSON.parse(string);
 

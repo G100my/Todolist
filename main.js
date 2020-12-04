@@ -60,16 +60,20 @@ function starMove(task) {
 }
 // ==== drag - Event Delegation
 
-bindDrag(normalArea, (dragItem, insertBeforeItem) => {
+function dealDragOrder(dragItem, insertBeforeItem) {
 	const dragItemDataIndex = taskList.findIndex(item => item.id === dragItem.id);
 	const dragItemData = taskList.splice(dragItemDataIndex, 1)[0];
-	if (insertBeforeItem === null) taskList.push(dragItemData)
+	if (insertBeforeItem === null)
+		taskList.push(dragItemData)
 	else {
 		const insertBeforeIndex = taskList.findIndex(item => item.id === insertBeforeItem.id);
 		taskList.splice(insertBeforeIndex, 0, dragItemData)
 	}
-	reRenderTaskList();
-});
+		reRenderTaskList();
+}
+
+bindDrag(normalArea, dealDragOrder);
+bindDrag(starArea, dealDragOrder);
 
 // ==== onload、create inputContainer
 

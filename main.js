@@ -42,6 +42,18 @@ addNewTaskInput.addEventListener("keydown", function (event) {
 	this.hidden = true;
 });
 
+// view rander
+
+function reRenderTaskList() {
+	let tmpObject = {};
+	let tmpElementList = Array.from(normalArea.childNodes).concat(Array.from(starArea.childNodes));
+	tmpElementList.forEach(item => tmpObject[item.id] = item)
+
+	taskList.forEach((data) => {
+		starMove(tmpObject[data.id]);
+	});
+}
+
 function starMove(task) {
 	if (task.isStar) starArea.append(task);
 	else normalArea.append(task);
@@ -49,7 +61,6 @@ function starMove(task) {
 // ==== drag - Event Delegation
 
 bindDrag(normalArea, (dragItem, insertBeforeItem) => {
-	console.table(taskList)
 	const dragItemDataIndex = taskList.findIndex(item => item.id === dragItem.id);
 	const dragItemData = taskList.splice(dragItemDataIndex, 1)[0];
 	if (insertBeforeItem === null) taskList.push(dragItemData)
@@ -57,6 +68,7 @@ bindDrag(normalArea, (dragItem, insertBeforeItem) => {
 		const insertBeforeIndex = taskList.findIndex(item => item.id === insertBeforeItem.id);
 		taskList.splice(insertBeforeIndex, 0, dragItemData)
 	}
+	reRenderTaskList();
 });
 
 // ==== onload、create inputContainer
@@ -70,14 +82,11 @@ window.onload = function () {
 		taskList.forEach((taskData) => {
 			const task = createTask(taskData);
 			starMove(task);
-			task.querySelector(".star").addEventListener("click", () => starMove(task));
+			task.querySelector(".star").addEventListener("click", () => reRenderTaskList(task));
 		});
 	}
 
 	window.addEventListener("taskUpdate", function (event) {
 		localStorage.setItem("taskList", JSON.stringify(updateTaskList(taskList, event.detail)));
-		// console.table(this.taskList);
 	});
 };
-
-// 	// create inputBlock, diffirent from createTaskContainer()

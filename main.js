@@ -45,71 +45,9 @@ function starMove(task) {
 	else normalArea.append(task);
 }
 
-// ==== drag
+// ==== drag - Event Delegation
 
-let tmpTarget, dragItem;
-
-function getDragTarget(event) {
-	if (event.target.id == "normal-task-area") return;
-	if (event.target.hasAttribute("draggable")) return event.target;
-	for (let i = 0; i < event.path.length; i++) {
-		if (event.path[i].hasAttribute("draggable")) {
-			return event.path[i];
-		}
-	}
-}
-
-normalArea.ondragstart = function (event) {
-	dragItem = getDragTarget(event);
-};
-
-normalArea.ondragenter = function (event) {
-	let target = getDragTarget(event);
-	if (target && tmpTarget != target) {
-		target.classList.add("drag-focus");
-		if (tmpTarget) tmpTarget.classList.remove("drag-focus");
-		tmpTarget = target;
-	}
-};
-
-normalArea.ondragover = function (event) {
-	let target = getDragTarget(event);
-	if (target == normalArea.lastElementChild) {
-		if (event.pageY > target.offsetTop + target.offsetHeight / 2) {
-			target.classList.remove("drag-focus");
-			target.classList.add("drag-focus-last");
-		} else {
-			target.classList.add("drag-focus");
-			target.classList.remove("drag-focus-last");
-		}
-	}
-	event.preventDefault();
-};
-normalArea.ondragleave = function (event) { event.preventDefault() };
-
-normalArea.ondrop = function (event) {
-	let target, sourceItem, sourceIndex, targetIndex;
-
-	target = getDragTarget(event);
-	sourceIndex = taskList.findIndex((i) => { return i.id == dragItem.id });
-	sourceItem = taskList.splice(sourceIndex, 1)[0];
-
-	if (target == normalArea.lastElementChild &&
-		event.pageY > target.offsetTop + target.offsetHeight / 2) {
-		dragItem.remove();
-		normalArea.append(dragItem);
-		targetIndex = taskList.length + 1;
-		target.classList.remove("drag-focus-last");
-	} else if (target.hasAttribute("draggable")) {
-		normalArea.insertBefore(dragItem, target);
-		targetIndex = taskList.findIndex((i) => { return i.id == target.id });
-	};
-
-	target.classList.remove("drag-focus");
-
-	taskList.splice(targetIndex, 0, sourceItem);
-	// saveToLocalStorage();
-};
+bindDrag(normalArea, () => {console.log("hi")});
 
 // ==== onload、create inputContainer
 

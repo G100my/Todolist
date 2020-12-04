@@ -69,7 +69,8 @@ function dealDragOrder(dragItem, insertBeforeItem) {
 		const insertBeforeIndex = taskList.findIndex(item => item.id === insertBeforeItem.id);
 		taskList.splice(insertBeforeIndex, 0, dragItemData)
 	}
-		reRenderTaskList();
+	localStorage.setItem("taskList", JSON.stringify(taskList))
+	reRenderTaskList();
 }
 
 bindDrag(normalArea, dealDragOrder);

@@ -54,7 +54,7 @@ function bindDrag(parent, callback) {
 	function dropHandler(event) {
 		event.preventDefault();
 		const insertBeforeItem = isUpsideToDownside ? overItem.nextSibling : overItem;
-		this.insertBefore(dragItem, insertBeforeItem);
+		// this.insertBefore(dragItem, insertBeforeItem); change way to Data-Driven
 		
 		callback(dragItem, insertBeforeItem);
 	}

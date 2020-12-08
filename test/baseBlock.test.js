@@ -1,7 +1,28 @@
+import createTitleBlock from '../components/titleBlock.js';
 import createStatusBlock from '../components/statusBlock.js';
 import createDetailBlock from '../components/detailBlock.js';
-import { datetimeIcon, fileIcon, commentIcon } from '../icon/icon.js';
 import createButtonBlock from '../components/buttonBlock.js';
+import { datetimeIcon, fileIcon, commentIcon, editIcon } from '../icon/icon.js';
+
+describe('title block', () => {
+	const titleBlock = createTitleBlock();
+
+	const templateString = `
+		<div class="title-block">
+			<label class="checkbox-container">
+				<input class="checkbox" type="checkbox">
+				<span class="check-mark"></span>
+			</label>
+			<a class="edit">${editIcon}</a>
+			<a class="star"></a>
+			<span></span>
+		</div>
+	`.replace(new RegExp(/(\r\n|\t|\n)/, 'g'), '');
+
+	test('plain Dom', () => {
+		expect(titleBlock.outerHTML).toMatch(templateString);
+	});
+});
 
 describe('status block', () => {
 	const statusBlock = createStatusBlock();

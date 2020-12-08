@@ -112,7 +112,7 @@ nav {
 
 .task-container {
 	background-color: var(--form-background);
-	margin-bottom: 20px;
+	transition: margin .1s, opacity .2s, transform .3s, max-height .3s;
 }
 
 /* titleBlock */

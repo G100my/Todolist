@@ -18,7 +18,7 @@ function creatDetailBlock() {
 	deadlineTime = document.createElement('input');
 	deadlineTime.type = 'time';
 
-	div.append(deadlineText, document.createElement('br'), deadlineDate, deadlineTime);
+	div.append(deadlineText, deadlineDate, deadlineTime);
 
 	// file
 	file = document.createElement('div');

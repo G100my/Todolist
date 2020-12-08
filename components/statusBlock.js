@@ -7,15 +7,16 @@ function createStatusBlock() {
 	statusBlock = document.createElement('div');
 	statusBlock.className = "status-block";
 
-	statusBlock.setStatus = function (date, time, file, comment) {
+	statusBlock.setStatus = function ({ date, time, file, comment }) {
 		// remove all children element, reset child one by one.
-		while (this.firstChild) { this.removeChild(this.firstChild) }
-
+		// while (this.firstChild) { this.removeChild(this.firstChild) }
+		this.textContent = '';
+		
 		// if no data, return undefined
 		if (!date && !time && !file && !comment) { return };
 		if (date || time ) {
 			deadlineSpan = document.createElement('span');
-			deadlineSpan.innerHTML = (datetimeIcon + ' ' + date + ' ' + time).trim().replace('  ', ' ');
+			deadlineSpan.innerHTML = `${datetimeIcon} ${date ? date : ""} ${time ? time : ""}`.trim().replace('  ', ' ');
 			statusBlock.appendChild(deadlineSpan);
 		};
 		if (file) {

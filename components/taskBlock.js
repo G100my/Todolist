@@ -128,7 +128,12 @@ function createTask(incomeData) {
 				detailBlock.comment.value = task.comment;
 				break;
 			case "status":
-				statusBlock.setStatus(task.deadlineDate, task.deadlineTime, task.file, task.comment);
+				statusBlock.setStatus({
+					date: task.deadlineDate,
+					time: task.deadlineTime,
+					file: task.file,
+					comment: task.comment,
+				});
 				break;
 
 			default:

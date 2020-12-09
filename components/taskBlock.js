@@ -101,7 +101,15 @@ function createTask(incomeData) {
 	}
 
 	function reRender(handler) {
-		const handlerNames = ["checkbox", "star", "taskMassage", "deadlineDate", "deadlineTime", "comment", "status"];
+		const handlerNames = [
+			'checkbox',
+			'star',
+			'taskMassage',
+			'deadlineDate',
+			'deadlineTime',
+			'comment',
+			'status'
+		];
 		switch (handler) {
 			case "all":
 				handlerNames.forEach((caseName) => {

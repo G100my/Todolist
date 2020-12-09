@@ -1,5 +1,5 @@
-import createTaskBlock from '../components/taskBlock.js';
-import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon, starFillIcon } from '../icon/icon.js';
+import createTaskBlock from '../src/components/taskBlock.js';
+import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon, starFillIcon } from '../src/icon/icon.js';
 
 function findDifferance(elemnetString, templateString) {
 	const length = elemnetString.length > templateString.length ? elemnetString.length : templateString.length;

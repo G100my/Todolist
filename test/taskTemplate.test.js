@@ -15,7 +15,7 @@ function findDifferance(elemnetString, templateString) {
 
 describe('task block', () => {
 	const incomeData = {
-		id: 1111111,
+		id: "1111111",
 		isComplete: true,
 		isStar: false,
 		taskTitle: "安安",
@@ -72,6 +72,10 @@ describe('task block', () => {
 	test('create with income data', () => {
 		findDifferance(taskBlock.outerHTML, templateString);
 		expect(taskBlock.outerHTML).toMatch(templateString);
+	})
+
+	test('get task data', () => {
+		expect(taskBlock.getData()).toEqual(incomeData);
 	})
 })
 

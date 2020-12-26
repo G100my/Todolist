@@ -10,6 +10,7 @@ const inProgressButton = document.getElementById("in-progress");
 const completedButton = document.getElementById("completed");
 const navButtonGroup = document.querySelector('div.nav-container');
 let taskList = [];
+let whichSort = 'total';
 
 // 在新增完任務名稱後按下 enter 時，建立新的 task block，插在 input 前面，input 隱藏
 // 並且給予 task block 第一次建立時的 handler
@@ -95,18 +96,21 @@ function sortReset(selfElement) {
 }
 
 myTasksButton.addEventListener("click", function () {
+	whichSort = 'total';
 	sortReset(this);
 	taskList.forEach(item => {
 		starMove(createTask(item))
 	})
 })
 inProgressButton.addEventListener("click", function () {
+	whichSort = 'progress';
 	sortReset(this);
 	taskList.forEach(item => {
 		if (!item.isComplete) starMove(createTask(item))
 	})
 })
 completedButton.addEventListener("click", function () {
+	whichSort = 'completed';
 	sortReset(this);
 	taskList.forEach(item => {
 		if (item.isComplete) starMove(createTask(item))
@@ -129,5 +133,26 @@ window.onload = function () {
 
 	window.addEventListener("taskUpdate", function (event) {
 		localStorage.setItem("taskList", JSON.stringify(updateTaskList(taskList, event.detail)));
+		normalArea.textContent = "";
+		starArea.textContent = "";
+		switch (whichSort) {
+			case 'total':
+				taskList.forEach(item => {
+					starMove(createTask(item))
+				})
+				break;
+			case 'progress':
+				taskList.forEach(item => {
+					if (!item.isComplete) starMove(createTask(item))
+				})
+				break;
+			case 'completed':
+				taskList.forEach(item => {
+					if (item.isComplete) starMove(createTask(item))
+				})
+				break;
+			default:
+				throw 'somethig wrong which resort tasklist'
+		}
 	});
 };

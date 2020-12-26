@@ -14,7 +14,6 @@ function createButtonBlock() {
 
 	submitButton = document.createElement('button');
 	submitButton.className = "submit-button";
-	submitButton.textContent = '+ Save';
 
 	buttonBlock.submitButton = submitButton;
 	buttonBlock.cancelButton = cancelButton;

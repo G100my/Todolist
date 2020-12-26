@@ -109,7 +109,7 @@ describe('button block', () => {
 	const templateString = `
 		<div class="button-block">
 			<button class="cancel-button">Cancel</button>
-			<button class="submit-button">+ Save</button>
+			<button class="submit-button"></button>
 		</div>`.replace(new RegExp(/(\r\n|\t|\n)/, 'g'), '');
 
 	test('plain DOM', () => {

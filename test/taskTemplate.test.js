@@ -1,18 +1,6 @@
 import createTaskBlock from '../src/components/taskBlock.js';
 import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon, starFillIcon } from '../src/icon/icon.js';
 
-function findDifferance(elemnetString, templateString) {
-	const length = elemnetString.length > templateString.length ? elemnetString.length : templateString.length;
-	for (let i = 0; i < length; i++) {
-		if (elemnetString[i] != templateString[i]) {
-			elemnetString = elemnetString.slice(0, i) + "\n\n" + elemnetString.slice(i, elemnetString.length)
-			templateString = templateString.slice(0, i) + "\n\n" + templateString.slice(i, templateString.length)
-			console.warn(`position: ${i}`, elemnetString, templateString);
-			break;
-		}
-	}
-}
-
 describe('task block', () => {
 	const incomeData = {
 		id: "1111111",
@@ -70,7 +58,7 @@ describe('task block', () => {
 	`.replace(new RegExp(/(\r\n|\t|\n)/, 'g'), '');
 
 	test('create with income data', () => {
-		findDifferance(taskBlock.outerHTML, templateString);
+		// findDifferance(taskBlock.outerHTML, templateString);
 		expect(taskBlock.outerHTML).toMatch(templateString);
 	})
 

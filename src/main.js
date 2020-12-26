@@ -8,6 +8,7 @@ const addNewTaskInput = document.getElementById("add-new-task-block");
 const myTasksButton = document.getElementById("my-tasks");
 const inProgressButton = document.getElementById("in-progress");
 const completedButton = document.getElementById("completed");
+const navButtonGroup = document.querySelector('div.nav-container');
 var taskList = [];
 
 function addTaskHandler(event) {
@@ -84,23 +85,27 @@ bindDrag(starArea, dealDragOrder);
 
 // ==== sort button
 
-myTasksButton.addEventListener("click", () => {
+function sortReset(selfElement) {
 	normalArea.textContent = "";
 	starArea.textContent = "";
+	Array.from(navButtonGroup.children).forEach(item => item.classList.remove('sort'));
+	selfElement.classList.add('sort');
+}
+
+myTasksButton.addEventListener("click", function () {
+	sortReset(this);
 	taskList.forEach(item => {
 		starMove(createTask(item))
 	})
 })
-inProgressButton.addEventListener("click", () => {
-	normalArea.textContent = "";
-	starArea.textContent = "";
+inProgressButton.addEventListener("click", function () {
+	sortReset(this);
 	taskList.forEach(item => {
 		if (!item.isComplete) starMove(createTask(item))
 	})
 })
-completedButton.addEventListener("click", () => {
-	normalArea.textContent = "";
-	starArea.textContent = "";
+completedButton.addEventListener("click", function () {
+	sortReset(this);
 	taskList.forEach(item => {
 		if (item.isComplete) starMove(createTask(item))
 	})

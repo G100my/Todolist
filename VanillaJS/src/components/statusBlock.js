@@ -7,6 +7,7 @@ function createStatusBlock() {
 	statusBlock = document.createElement('div');
 	statusBlock.className = "status-block";
 
+	// 設為 object property function，重新渲染資料用的
 	statusBlock.setStatus = function ({ date, time, file, comment }) {
 		// remove all children element, reset child one by one.
 		// while (this.firstChild) { this.removeChild(this.firstChild) }

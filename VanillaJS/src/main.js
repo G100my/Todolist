@@ -9,8 +9,10 @@ const myTasksButton = document.getElementById("my-tasks");
 const inProgressButton = document.getElementById("in-progress");
 const completedButton = document.getElementById("completed");
 const navButtonGroup = document.querySelector('div.nav-container');
-var taskList = [];
+let taskList = [];
 
+// 在新增完任務名稱後按下 enter 時，建立新的 task block，插在 input 前面，input 隱藏
+// 並且給予 task block 第一次建立時的 handler
 function addTaskHandler(event) {
 	if (event.key !== "Enter") return;
 	
@@ -60,13 +62,13 @@ function reRenderTaskList() {
 		starMove(tmpObject[data.id]);
 	});
 }
-
+// 渲染時重新分配有標記 star 的區塊該出現的位置
 function starMove(task) {
 	if (task.isStar) starArea.append(task);
 	else normalArea.append(task);
 }
 // ==== drag - Event Delegation
-
+// 拖曳時改變資料 array 順序
 function dealDragOrder(dragItem, insertBeforeItem) {
 	const dragItemDataIndex = taskList.findIndex(item => item.id === dragItem.id);
 	const dragItemData = taskList.splice(dragItemDataIndex, 1)[0];

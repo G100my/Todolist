@@ -1,5 +1,5 @@
 import { datetimeIcon, fileIcon, commentIcon } from "../icon/icon.js";
-
+// 生成中間區塊
 // ==== detail block
 function creatDetailBlock() {
 	let detailBlock, div, deadlineText, deadlineDate, deadlineTime, file, comment, textarea;
@@ -21,6 +21,7 @@ function creatDetailBlock() {
 	div.append(deadlineText, deadlineDate, deadlineTime);
 
 	// file
+	// 不打算真的實作功能...簡單帶過
 	file = document.createElement('div');
 	file.innerHTML = fileIcon +
 		'<span>File</span>' +
@@ -40,6 +41,7 @@ function creatDetailBlock() {
 
 	detailBlock.append(div, file, comment);
 
+	// 設成 object property，紀錄位置，這樣不必一直寫 querySelector...
 	detailBlock.deadlineDate = deadlineDate;
 	detailBlock.deadlineTime = deadlineTime;
 	detailBlock.comment = textarea;

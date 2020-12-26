@@ -37,7 +37,7 @@ function createTitleBlock() {
 
 	titleBlock.append(checkBoxContainer, edit, star, taskMassage);
 
-	// set these as element property
+	// 設成 object property，紀錄位置，這樣不必一直寫 querySelector...
 	titleBlock.editButton = edit;
 	titleBlock.checkbox = checkbox;
 	titleBlock.starButton = star;

@@ -4,9 +4,10 @@ import createStatusBlock from "./statusBlock.js";
 import createTitleBlock from "./titleBlock.js";
 import {starFillIcon, starEmptyIcon} from "../icon/icon.js";
 
+// 集結四個 block 成為一個 task block
 function createTask(incomeData) {
 	let task, titleBlock, statusBlock, detailBlock, buttonGroup, accordion;
-
+	// 預設初始值
 	task = Object.assign(document.createElement("div"), {
 		id: "",
 		isComplete: false,
@@ -21,6 +22,7 @@ function createTask(incomeData) {
 	});
 	task.className = "task-container";
 	task.draggable = true;
+	// 設為 object property function，取值用的
 	task.getData = function () {
 		return {
 			id: this.id,
@@ -33,11 +35,13 @@ function createTask(incomeData) {
 			comment: this.comment,
 		};
 	};
-
+	// 如果建立時有 incomeData 則覆蓋 task 預設值
 	if (incomeData) {
 		task = Object.assign(task, incomeData);
 	}
 
+	// 建立 titleBlock，個別綁 handler
+	// 因為 handler 有可能會影響到其他 block ，所以在這一層才綁 handler
 	titleBlock = createTitleBlock();
 	titleBlock.checkbox.addEventListener("input", function () {
 		task.isComplete = this.checked;
@@ -91,15 +95,17 @@ function createTask(incomeData) {
 
 	task.append(titleBlock, accordion);
 
+	// 各區塊建立完成後先 rerander 一次，把 task 初始化的值變成畫面
 	reRender("all");
 
+	// 自訂 event 透過 event 傳值給 window
 	function emitUpdate() {
-		// console.log(task)
 		const Data = task.getData();
 		const taskUpdateEvent = new CustomEvent("taskUpdate", {detail: Data});
 		window.dispatchEvent(taskUpdateEvent);
 	}
 
+	// 有可能不必全部都 reRender，設成各別項
 	function reRender(handler) {
 		const handlerNames = [
 			'checkbox',

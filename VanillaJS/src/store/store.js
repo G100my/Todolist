@@ -4,7 +4,7 @@ function findTaskIndex(array, incomeTask) {
 	})
 }
 
-
+// 更新 TaskList 的資料
 function updateTaskList(array, income) {
 	if (!Array.isArray(array)) throw "targetArray is not array";
 	if (typeof array !== "object") throw "income is not object";

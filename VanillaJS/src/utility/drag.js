@@ -1,7 +1,9 @@
 // ==== drag - Event Delegation
 
+// 事件委派, 事件是綁在 parent
 function bindDrag(parent, callback) {
 	let dragItem, overItem, isUpsideToDownside, currentRangeMinY, currentRangeMaxY, overPreviousY, parentId;
+	// 過濾掉 target 是裡面的其他元件等情況
 	function targetFilter(event) {
 		if (event.target === parent) return;
 		if (event.target.hasAttribute("draggable")) return event.target;
@@ -50,7 +52,7 @@ function bindDrag(parent, callback) {
 		if (parent.id !== parentId) return;
 		event.preventDefault();
 		const insertBeforeItem = isUpsideToDownside ? overItem.nextSibling : overItem;
-		// this.insertBefore(dragItem, insertBeforeItem); change way to Data-Driven
+		// this.insertBefore(dragItem, insertBeforeItem); 改成資料驅動
 
 		callback(dragItem, insertBeforeItem);
 	}

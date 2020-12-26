@@ -1,5 +1,5 @@
 // ==== buttonBlock
-
+// 生成底下兩個 button
 function createButtonBlock() {
 	let buttonBlock, cancelButton, submitButton;
 
@@ -15,6 +15,7 @@ function createButtonBlock() {
 	submitButton = document.createElement('button');
 	submitButton.className = "submit-button";
 
+	// 設成 object property，紀錄位置，這樣不必一直寫 querySelector...
 	buttonBlock.submitButton = submitButton;
 	buttonBlock.cancelButton = cancelButton;
 

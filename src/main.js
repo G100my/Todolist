@@ -10,19 +10,26 @@ const inProgressButton = document.getElementById("in-progress");
 const completedButton = document.getElementById("completed");
 var taskList = [];
 
-addNewTaskInput.addEventListener("keydown", function (event) {
+function addTaskHandler(event) {
 	if (event.key !== "Enter") return;
+	
 	const initialData = {
 		id: Date.now(),
 		taskTitle: addNewTaskInput.value,
 	};
+
 	const newTask = createTask(initialData);
 	newTask.querySelector(".accordion").hidden = false;
 	const submitButton = newTask.querySelector(".submit-button");
 	const cancelButton = newTask.querySelector(".cancel-button");
 
+	submitButton.innerHTML = "+ Add";
+	submitButton.addEventListener("click", addHandler, {once: true});
+	cancelButton.addEventListener("click", cancelHandler);
+	this.parentNode.insertBefore(newTask, this);
+	this.hidden = true;
+
 	function addHandler() {
-		// starArea.append(newTask);
 		newTask.querySelector(".accordion").hidden = true;
 		this.innerHTML = "+ Save";
 		addNewTaskInput.hidden = false;
@@ -31,19 +38,15 @@ addNewTaskInput.addEventListener("keydown", function (event) {
 		newTask.querySelector(".star").addEventListener("click", () => starMove(newTask));
 		cancelButton.removeEventListener("click", cancelHandler);
 	}
-
+	
 	function cancelHandler() {
 		newTask.remove();
 		addNewTaskInput.hidden = false;
 		addNewTaskInput.value = "";
 	}
+}
 
-	submitButton.innerHTML = "+ Add";
-	submitButton.addEventListener("click", addHandler, {once: true});
-	cancelButton.addEventListener("click", cancelHandler);
-	this.parentNode.insertBefore(newTask, this);
-	this.hidden = true;
-});
+addNewTaskInput.addEventListener("keydown", addTaskHandler);
 
 // view rander
 

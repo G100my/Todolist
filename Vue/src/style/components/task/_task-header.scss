@@ -1,0 +1,72 @@
+.task-header {
+    padding: 24px 32px;
+    display: flex;
+    border-bottom: #C8C8C8 2px solid;
+
+    div + div {
+        margin-left: 16px;
+    }
+
+    .title {
+        flex: 1;
+        font-size: 24px;
+        
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        
+        a + a {
+            margin-left: 32px;
+        }
+
+        input {
+            display: none;
+        }
+    }
+}
+
+.check-complete {
+    position: relative;
+	display: block;
+	// margin-right: 15px;
+	height: 24px;
+    width: 24px;
+    
+    span {
+        background-color: white;
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    input {
+        display: none;
+    }
+
+    input:checked + span {
+        /* checkbox裡的 input:checked 和 check-Mark 一起被選擇*/
+        background-color: blue;
+    }
+
+    span::before {
+        position: absolute;
+        top: 7%;
+        left: 35%;
+        content: "";
+        display: block;
+        opacity: 0.8;
+        z-index: 10;
+        width: 30%;
+        height: 60%;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+}

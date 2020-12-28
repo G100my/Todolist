@@ -1,0 +1,44 @@
+.content {
+    padding: 27px 78px 24px 72px;
+    div + div {
+        margin-top: 24px;
+    }
+}
+
+.deadline,
+.file,
+.comment {
+    P {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    p::before {
+        position: absolute;
+        left: -25px;
+    }
+}
+
+.deadline {
+    p::before {
+        content: url(./icons/table.svg);
+        
+        
+    }
+}
+
+.file {
+    p::before {
+        content: url(./icons/file-earmark.svg)
+    }
+}
+
+.comment {
+    p::before {
+        content: url(./icons/chat-dots.svg)
+    }
+
+    textarea {
+        width: 445px;
+    }
+}

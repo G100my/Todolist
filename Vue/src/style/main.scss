@@ -1,0 +1,49 @@
+@use './components/create-new-task.scss';
+@use './components/task/container.scss';
+
+:root {
+    --background-color: #E1E1E1;
+    --background-second: #4A90E2;
+    --app-width: 600px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+p {
+    margin: 0;
+}
+
+.container {
+    width: var(--app-width);
+    margin: 0 auto;    
+}
+
+nav {
+    background-color: var(--background-second);
+       
+    .sort-group {
+        min-height: 76px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+    }
+}
+
+main {
+    padding: 24px 0;
+}
+
+.task-list {
+    margin: 24px 0;
+}
+
+

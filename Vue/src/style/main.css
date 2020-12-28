@@ -1,0 +1,175 @@
+@charset "UTF-8";
+.create-new-task input {
+  width: 100%;
+  height: 65px;
+  padding: 19px 32px;
+  font-size: 24px;
+  border: none;
+}
+
+.task-header {
+  padding: 24px 32px;
+  display: flex;
+  border-bottom: #C8C8C8 2px solid;
+}
+.task-header div + div {
+  margin-left: 16px;
+}
+.task-header .title {
+  flex: 1;
+  font-size: 24px;
+}
+.task-header .button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.task-header .button-group a + a {
+  margin-left: 32px;
+}
+.task-header .button-group input {
+  display: none;
+}
+
+.check-complete {
+  position: relative;
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+.check-complete span {
+  background-color: white;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.check-complete input {
+  display: none;
+}
+.check-complete input:checked + span {
+  /* checkbox裡的 input:checked 和 check-Mark 一起被選擇*/
+  background-color: blue;
+}
+.check-complete span::before {
+  position: absolute;
+  top: 7%;
+  left: 35%;
+  content: "";
+  display: block;
+  opacity: 0.8;
+  z-index: 10;
+  width: 30%;
+  height: 60%;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.content {
+  padding: 27px 78px 24px 72px;
+}
+.content div + div {
+  margin-top: 24px;
+}
+
+.deadline P,
+.file P,
+.comment P {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.deadline p::before,
+.file p::before,
+.comment p::before {
+  position: absolute;
+  left: -25px;
+}
+
+.deadline p::before {
+  content: url(./icons/table.svg);
+}
+
+.file p::before {
+  content: url(./icons/file-earmark.svg);
+}
+
+.comment p::before {
+  content: url(./icons/chat-dots.svg);
+}
+.comment textarea {
+  width: 445px;
+}
+
+.button-group {
+  display: flex;
+  height: 60px;
+}
+.button-group button {
+  flex: 1;
+  border: none;
+  font-size: 24px;
+}
+
+.cancel {
+  background-color: white;
+  color: #D0021B;
+}
+
+.submit {
+  background-color: var(--background-second);
+  color: white;
+}
+
+.task {
+  background-color: #F2F2F2;
+}
+
+:root {
+  --background-color: #E1E1E1;
+  --background-second: #4A90E2;
+  --app-width: 600px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  width: var(--app-width);
+  margin: 0 auto;
+}
+
+nav {
+  background-color: var(--background-second);
+}
+nav .sort-group {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+main {
+  padding: 24px 0;
+}
+
+.task-list {
+  margin: 24px 0;
+}
+
+/*# sourceMappingURL=main.css.map */

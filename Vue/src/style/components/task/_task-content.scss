@@ -1,4 +1,14 @@
 .content {
+    max-height: 100%;
+    overflow: hidden;
+    transition: max-height .5s ease-in-out;
+
+    &.close {
+        max-height: 0;
+    }
+}
+
+.detail {
     padding: 27px 78px 24px 72px;
     div + div {
         margin-top: 24px;

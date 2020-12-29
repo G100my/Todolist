@@ -5,3 +5,14 @@
 .task {
     background-color: #F2F2F2;
 }
+
+.star-task {
+
+    .task-header {
+        background-color: var(--star-background-color);
+    }
+
+    & .star {
+        color: var(--star-color);
+    }
+}

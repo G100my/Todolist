@@ -22,7 +22,7 @@
             <div class="create-new-task">
                 <input
                     @keydown.enter="newTaskInputHandler"
-                    v-model="newTask.title"
+                    v-model="newTask.taskTitle"
                     v-show="!isCreating"
                     class="add-new-task"
                     type="text"
@@ -36,7 +36,7 @@
                             </label>
                         </div>
                         <div class="title">
-                            <p>{{ newTask.title }}</p>
+                            <p>{{ newTask.taskTitle }}</p>
                         </div>
                         <div class="button-group">
                             <a @click='this.newTask.isStar = !this.newTask.isStar' v-html='this.newTask.isStar ? starFillIcon : starEmptyIcon' class='star' type='button'></a>

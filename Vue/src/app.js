@@ -2,11 +2,12 @@ import { starEmptyIcon, starFillIcon, editIcon } from './style/icons/icon.js';
 import task from './components/task.js';
 
 const emtpyTask = {
-    title: '',
+    taskTitle: '',
     isCompleted: false,
     isStar: false,
-    date: '',
-    time: '',
+    deadlineDate: '',
+    deadlineTime: '',
+    comment: '',
 }
 
 const app = Vue.createApp({
@@ -16,21 +17,22 @@ const app = Vue.createApp({
             todolist: [
                 {
                     id: '12313123',
+                    taskTitle: 'qweqwe',
                     isComplete: false,
                     isStar: true,
-                    taskTitle: 'qweqwe',
                     deadlineDate: '',
                     deadlineTime: '',
                     // file: null,
-                    comment: '',
+                    comment: 'dddddddddddddd',
                 }
             ],
             newTask: {
-                title: '',
+                taskTitle: '',
                 isCompleted: false,
                 isStar: false,
-                date: '',
-                time: '',
+                deadlineDate: '',
+                deadlineTime: '',
+                comment: '',
             },
             isCreating: false,
             starEmptyIcon,

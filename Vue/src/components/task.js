@@ -58,7 +58,7 @@ export default {
             starEmptyIcon,
             starFillIcon,
             editIcon,
-            isClose: false,
+            isClose: true,
         }
     },
     props: {

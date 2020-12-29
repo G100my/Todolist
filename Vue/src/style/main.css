@@ -7,6 +7,11 @@
   border: none;
 }
 
+:root {
+  --star-background-color: #FFF2DC;
+  --star-color: #F5A623;
+}
+
 .task-header {
   padding: 24px 32px;
   display: flex;
@@ -18,6 +23,9 @@
 .task-header .title {
   flex: 1;
   font-size: 24px;
+}
+.task-header .title p {
+  height: 100%;
 }
 .task-header .button-group {
   display: flex;
@@ -69,9 +77,18 @@
 }
 
 .content {
+  max-height: 100%;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.content.close {
+  max-height: 0;
+}
+
+.detail {
   padding: 27px 78px 24px 72px;
 }
-.content div + div {
+.detail div + div {
   margin-top: 24px;
 }
 
@@ -126,6 +143,13 @@
 
 .task {
   background-color: #F2F2F2;
+}
+
+.star-task .task-header {
+  background-color: var(--star-background-color);
+}
+.star-task .star {
+  color: var(--star-color);
 }
 
 :root {

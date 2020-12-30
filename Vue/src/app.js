@@ -21,20 +21,27 @@ const vm = Vue.createApp({
             isClose: false,
         }
     },
+    created() {
+        this.taskList = JSON.parse(localStorage.getItem('taskList')) || [];
+    },
     methods: {
         newTaskInputHandler() {
-            console.log(this.isCreating)
             this.isCreating = !this.isCreating;
         },
         createNewTask() {
-            this.todolist.push(this.newTask);
+            this.taskList.push({ id: Date.now(), ...this.newTask });
             this.initCreate();
+            localStorage.setItem('taskList', JSON.stringify(this.taskList));
         },
         initCreate() {
-            this.newTask = Object.assign({}, emtpyTask);
-
+            this.newTask = Object.assign({}, this.$options.data().newTask)
+            this.isCreating = false;
         },
-
+        updateTaskList(data) {
+            const index = this.taskList.findIndex(item => item.id === data.id);
+            this.taskList[index] = Object.assign(this.taskList[index], data);
+            localStorage.setItem('taskList', JSON.stringify(this.taskList));
+        }
     },
     components: {
         task

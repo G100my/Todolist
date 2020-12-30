@@ -68,9 +68,13 @@
             </div>
             <div
                 class="task-list"
-                v-for='task in todolist'
+                v-for="task in taskList"
+                :key="task.id"
             >
-                <task :income-data='task'></task>
+                <task
+                    @update-tasklist="updateTaskList"
+                    :income-data='task'
+                ></task>
             </div>
         </div>
     </main>

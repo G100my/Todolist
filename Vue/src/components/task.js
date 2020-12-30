@@ -5,7 +5,7 @@ const template = `
     <div class='task-header'>
         <div class='check-complete'>
             <label>
-                <input type='checkbox' v-model='data.isComplete'>
+                <input v-model='data.isComplete' type='checkbox'>
                 <span></span>
             </label>
         </div>
@@ -61,23 +61,33 @@ export default {
             isClose: true,
         }
     },
+    created() {
+        this.data = Object.assign(this.data, this.incomeData);
+    },
     props: {
         incomeData: Object,
     },
-    created() {
-        this.data = Object.assign(this.data, this.incomeData);
-        console.log(this.data)
+    // vue3 syntax 用來檢查/描述 event，有點類似寫測試XD?
+    emits: ['update-tasklist'],
+    watch: {
+        'data.isStar': function () {
+            this.$emit('update-tasklist', this.data);
+        },
+        'data.isComplete': function () {
+            this.$emit('update-tasklist', this.data);
+        },
     },
     methods: {
         isStarHandler() { this.data.isStar = !this.data.isStar },
         editHandler() { this.isClose = !this.isClose },
         cancelHandler() {
+            // this.data = Object.assign(this.data, this.$props.incomeData);
             this.data = Object.assign(this.data, this.incomeData);
             this.isClose = true;
         },
         submitHandler() {
             this.isClose = true;
-            // this.$emit('save-edit)
+            this.$emit('update-tasklist', this.data);
         },
     }
 }

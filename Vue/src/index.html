@@ -68,11 +68,11 @@
             </div>
             <div
                 class="task-list"
-                v-for="task in taskList"
-                :key="task.id"
             >
                 <task
                     @update-tasklist="updateTaskList"
+                    v-for="task in taskList"
+                    :key="task.id"
                     :income-data='task'
                 ></task>
             </div>

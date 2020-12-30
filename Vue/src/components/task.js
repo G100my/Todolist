@@ -61,6 +61,7 @@ export default {
             isClose: true,
         }
     },
+    // 先設定上面的初始值，在 create 時換成 props incomeData
     created() {
         this.data = Object.assign(this.data, this.incomeData);
     },
@@ -69,7 +70,15 @@ export default {
     },
     // vue3 syntax 用來檢查/描述 event，有點類似寫測試XD?
     emits: ['update-tasklist'],
+    // isStar, isComplete 不在 content 內, 需要按了立即更新，
+    // 因此使用 watch，與 submitHandler 分開
+    // 且不使用 deep: true
+    // data: {
+    //     deep: trune,
+    //     function () { ... }
+    // }
     watch: {
+        // object property 的寫法
         'data.isStar': function () {
             this.$emit('update-tasklist', this.data);
         },

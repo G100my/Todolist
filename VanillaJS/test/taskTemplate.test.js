@@ -1,5 +1,5 @@
 import createTaskBlock from '../src/components/taskBlock.js';
-import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon, starFillIcon } from '../src/icon/icon.js';
+import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon } from '/icon/icon.js';
 
 describe('task block', () => {
 	const incomeData = {

@@ -1,4 +1,4 @@
-import { datetimeIcon, fileIcon, commentIcon } from "../icon/icon.js";
+import { datetimeIcon, fileIcon, commentIcon } from "/icon/icon.js";
 
 // ==== statusBlock
 function createStatusBlock() {

@@ -2,7 +2,7 @@ import createTitleBlock from '../src/components/titleBlock.js';
 import createStatusBlock from '../src/components/statusBlock.js';
 import createDetailBlock from '../src/components/detailBlock.js';
 import createButtonBlock from '../src/components/buttonBlock.js';
-import { datetimeIcon, fileIcon, commentIcon, editIcon } from '../src/icon/icon.js';
+import { datetimeIcon, fileIcon, commentIcon, editIcon } from '/icon/icon.js';
 
 describe('title block', () => {
 	const titleBlock = createTitleBlock();

@@ -1,4 +1,4 @@
-import { editIcon } from "../icon/icon.js";
+import { editIcon } from "/icon/icon.js";
 
 // ==== TitleBlock
 function createTitleBlock() {

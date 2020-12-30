@@ -1,6 +1,6 @@
 import createTask from "./components/taskBlock.js";
 import {updateTaskList} from "./store/store.js";
-import bindDrag from "./utility/drag.js";
+import bindDrag from "/utility/drag.js";
 
 const starArea = document.getElementById("star-task-area");
 const normalArea = document.getElementById("normal-task-area");

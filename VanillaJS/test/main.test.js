@@ -1,6 +1,5 @@
-import createTaskBlock from '../src/components/taskBlock.js';
 import find from './findDifferance.js';
-import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon, starFillIcon } from '../src/icon/icon.js';
+import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon } from '/icon/icon.js';
 
 document.body.innerHTML = `
 	<nav>

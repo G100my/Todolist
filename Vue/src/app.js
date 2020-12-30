@@ -1,16 +1,7 @@
 import { starEmptyIcon, starFillIcon, editIcon } from './style/icons/icon.js';
 import task from './components/task.js';
 
-const emtpyTask = {
-    taskTitle: '',
-    isCompleted: false,
-    isStar: false,
-    deadlineDate: '',
-    deadlineTime: '',
-    comment: '',
-}
-
-const app = Vue.createApp({
+const vm = Vue.createApp({
     // el: '#app',
     data() {
         return {
@@ -59,7 +50,6 @@ const app = Vue.createApp({
     components: {
         task
     }
-
 })
-
-app.mount('#app')
+    
+vm.mount('#app')

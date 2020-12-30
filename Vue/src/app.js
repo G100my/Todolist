@@ -5,18 +5,7 @@ const vm = Vue.createApp({
     // el: '#app',
     data() {
         return {
-            todolist: [
-                {
-                    id: '12313123',
-                    taskTitle: 'qweqwe',
-                    isComplete: false,
-                    isStar: true,
-                    deadlineDate: '',
-                    deadlineTime: '',
-                    // file: null,
-                    comment: 'dddddddddddddd',
-                }
-            ],
+            taskList: [],
             newTask: {
                 taskTitle: '',
                 isCompleted: false,

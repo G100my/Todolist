@@ -47,8 +47,8 @@
                         <div class="detail">
                             <div class="deadline">
                                 <p>Deadline</p>
-                                <input type="date">
-                                <input type="time">
+                                <input v-model="newTask.deadlineDate" type="date">
+                                <input v-model="newTask.deadlineTime" type="time">
                             </div>
                             <div class="file">
                                 <p>File</p>
@@ -56,12 +56,12 @@
                             </div>
                             <div class="comment">
                                 <p>Comment</p>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <textarea v-model="newTask.comment" cols="30" rows="10"></textarea>
                             </div>
                         </div>
                         <div class="button-group">
-                            <button @click="createNewTask" class="cancel">Cancel</button>
-                            <button class="submit">Submit</button>
+                            <button @click="initCreate" class="cancel">Cancel</button>
+                            <button @click="createNewTask"class="submit">Submit</button>
                         </div>
                     </div>
                 </div>

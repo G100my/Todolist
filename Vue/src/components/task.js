@@ -5,7 +5,7 @@ const template = `
     <div class='task-header'>
         <div class='check-complete'>
             <label>
-                <input v-model='data.isComplete' type='checkbox'>
+                <input v-model='data.isCompleted' type='checkbox'>
                 <span></span>
             </label>
         </div>
@@ -47,7 +47,7 @@ export default {
         return {
             data: {
                 id: '',
-                isComplete: false,
+                isCompleted: false,
                 isStar: false,
                 taskTitle: '',
                 deadlineDate: '',
@@ -70,7 +70,7 @@ export default {
     },
     // vue3 syntax 用來檢查/描述 event，有點類似寫測試XD?
     emits: ['update-tasklist'],
-    // isStar, isComplete 不在 content 內, 需要按了立即更新，
+    // isStar, isCompleted 不在 content 內, 需要按了立即更新，
     // 因此使用 watch，與 submitHandler 分開
     // 且不使用 deep: true
     // data: {
@@ -82,7 +82,7 @@ export default {
         'data.isStar': function () {
             this.$emit('update-tasklist', this.data);
         },
-        'data.isComplete': function () {
+        'data.isCompleted': function () {
             this.$emit('update-tasklist', this.data);
         },
     },

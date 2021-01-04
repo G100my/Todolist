@@ -11,9 +11,9 @@
     <nav>
         <div class="container">
             <div class="sort-group">
-                <a href="##" type="button">My task</a>
-                <a href="##" type="button">In progress</a>
-                <a href="##" type="button">Completed</a>
+                <a @click="changePageSort('all')" href="##" type="button">My task</a>
+                <a @click="changePageSort('inProgress')" href="##" type="button">In progress</a>
+                <a @click="changePageSort('completed')" href="##" type="button">Completed</a>
             </div>
         </div>
     </nav>
@@ -73,7 +73,7 @@
             >
                 <task
                     @update-tasklist="updateTaskList"
-                    v-for="task in taskList"
+                    v-for="task in sortTaskList"
                     :key="task.id"
                     :income-data='task'
                 ></task>

@@ -20,6 +20,8 @@ const vm = Vue.createApp({
             starFillIcon,
             editIcon,
             isClose: false,
+            pageSort: 'all',
+            sortTaskList: [],
         }
     },
     created() {
@@ -42,6 +44,7 @@ const vm = Vue.createApp({
             // function name must be 'handler' ....
             handler() {
                 localStorage.setItem('taskList', JSON.stringify(this.taskList));
+                this.changePageSort(this.pageSort)
             },
             deep: true,
         },
@@ -61,6 +64,25 @@ const vm = Vue.createApp({
         updateTaskList(data) {
             const index = this.taskList.findIndex(item => item.id === data.id);
             this.taskList[index] = Object.assign(this.taskList[index], data);
+        },
+        changePageSort(key) {
+            this.pageSort = key;
+            switch (key) {
+                case 'all':
+                    this.sortTaskList = this.taskList;
+                    break;
+            
+                case 'inProgress':
+                    this.sortTaskList = this.taskList.filter(item => !item.isCompleted);
+                    break;
+            
+                case 'completed':
+                    this.sortTaskList = this.taskList.filter(item => {
+                        console.log(item.isCompleted)
+                        return item.isCompleted
+                    });
+                    break;
+            }
         },
     },
     components: {

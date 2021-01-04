@@ -1,7 +1,7 @@
 import { starEmptyIcon, starFillIcon, editIcon } from '../style/icons/icon.js';
 
 const template = `
-<div :id='data.id' :class='{"star-task": data.isStar}' class='task'>
+<div :id='data.id' :class='{"star-task": data.isStar}' draggable="true" class='task'>
     <div class='task-header'>
         <div class='check-complete'>
             <label>

@@ -71,12 +71,12 @@ function starMove(task) {
 // ==== drag - Event Delegation
 // 拖曳時改變資料 array 順序
 function dealDragOrder(dragItem, insertBeforeItem) {
-	const dragItemDataIndex = taskList.findIndex(item => item.id === dragItem.id);
+	const dragItemDataIndex = taskList.findIndex(item => item.id == dragItem.id);
 	const dragItemData = taskList.splice(dragItemDataIndex, 1)[0];
-	if (insertBeforeItem === null)
-		taskList.push(dragItemData)
+	
+	if (!insertBeforeItem) taskList.push(dragItemData)
 	else {
-		const insertBeforeIndex = taskList.findIndex(item => item.id === insertBeforeItem.id);
+		const insertBeforeIndex = taskList.findIndex(item => item.id == insertBeforeItem.id);
 		taskList.splice(insertBeforeIndex, 0, dragItemData)
 	}
 	localStorage.setItem("taskList", JSON.stringify(taskList))

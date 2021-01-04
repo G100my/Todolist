@@ -24,6 +24,15 @@ const vm = Vue.createApp({
     created() {
         this.taskList = JSON.parse(localStorage.getItem('taskList')) || [];
     },
+    watch: {
+        taskList: {
+            // function name must be 'handler' ....
+            handler() {
+                localStorage.setItem('taskList', JSON.stringify(this.taskList));
+            },
+            deep: true,
+        },
+    },
     methods: {
         newTaskInputHandler() {
             this.isCreating = !this.isCreating;
@@ -31,7 +40,6 @@ const vm = Vue.createApp({
         createNewTask() {
             this.taskList.push({ id: Date.now(), ...this.newTask });
             this.initCreate();
-            localStorage.setItem('taskList', JSON.stringify(this.taskList));
         },
         initCreate() {
             this.newTask = Object.assign({}, this.$options.data().newTask)
@@ -40,8 +48,7 @@ const vm = Vue.createApp({
         updateTaskList(data) {
             const index = this.taskList.findIndex(item => item.id === data.id);
             this.taskList[index] = Object.assign(this.taskList[index], data);
-            localStorage.setItem('taskList', JSON.stringify(this.taskList));
-        }
+        },
     },
     components: {
         task

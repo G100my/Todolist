@@ -4,6 +4,8 @@
 
 .task {
     background-color: #F2F2F2;
+    transition-property: margin;
+    transition-duration: .2s;
 }
 
 .star-task {

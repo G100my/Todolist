@@ -15,6 +15,7 @@ function bindDrag(parent, callback) {
 	}
 
 	function dragstartHandler(event) {
+		parent.style.border = 'gray 1px dashed';
 		parentId = parent.id;
 		dragItem = event.target;
 		currentRangeMinY = dragItem.offsetTop;

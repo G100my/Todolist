@@ -143,6 +143,8 @@
 
 .task {
   background-color: #F2F2F2;
+  transition-property: margin;
+  transition-duration: 0.2s;
 }
 
 .star-task .task-header {

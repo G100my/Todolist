@@ -73,7 +73,19 @@
             >
                 <task
                     @update-tasklist="updateTaskList"
-                    v-for="task in sortTaskList"
+                    v-for="task in starList"
+                    :key="task.id"
+                    :income-data='task'
+                ></task>
+            </div>
+            <div
+                id="normal-list" 
+                class="task-list"
+                ref="task-list-block"
+            >
+                <task
+                    @update-tasklist="updateTaskList"
+                    v-for="task in normalList"
                     :key="task.id"
                     :income-data='task'
                 ></task>

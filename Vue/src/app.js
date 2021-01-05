@@ -24,6 +24,10 @@ const vm = Vue.createApp({
             sortTaskList: [],
         }
     },
+    computed: {
+        starList() {return this.sortTaskList.filter(item => item.isStar)},
+        normalList() {return this.sortTaskList.filter(item => !item.isStar)},
+    },
     created() {
         this.taskList = JSON.parse(localStorage.getItem('taskList')) || [];
     },

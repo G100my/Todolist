@@ -100,6 +100,8 @@ function createTask(incomeData) {
 
 	// 自訂 event 透過 event 傳值給 window
 	function emitUpdate() {
+		// 確定建立才給 id
+		if (task.id === '') return;
 		const Data = task.getData();
 		const taskUpdateEvent = new CustomEvent("taskUpdate", {detail: Data});
 		window.dispatchEvent(taskUpdateEvent);

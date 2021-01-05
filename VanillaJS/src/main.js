@@ -16,13 +16,10 @@ let whichSort = 'total';
 // 並且給予 task block 第一次建立時的 handler
 function addTaskHandler(event) {
 	if (event.key !== "Enter") return;
-	
-	const initialData = {
-		id: Date.now(),
-		taskTitle: addNewTaskInput.value,
-	};
 
-	const newTask = createTask(initialData);
+	const newTask = createTask({
+		taskTitle: addNewTaskInput.value,
+	});
 	newTask.querySelector(".accordion").hidden = false;
 	const submitButton = newTask.querySelector(".submit-button");
 	const cancelButton = newTask.querySelector(".cancel-button");
@@ -41,6 +38,7 @@ function addTaskHandler(event) {
 		starMove(newTask);
 		newTask.querySelector(".star").addEventListener("click", () => starMove(newTask));
 		cancelButton.removeEventListener("click", cancelHandler);
+		newTask.id = Date.now();
 	}
 	
 	function cancelHandler() {
@@ -73,7 +71,7 @@ function starMove(task) {
 function dealDragOrder(dragItem, insertBeforeItem) {
 	const dragItemDataIndex = taskList.findIndex(item => item.id == dragItem.id);
 	const dragItemData = taskList.splice(dragItemDataIndex, 1)[0];
-	
+
 	if (!insertBeforeItem) taskList.push(dragItemData)
 	else {
 		const insertBeforeIndex = taskList.findIndex(item => item.id == insertBeforeItem.id);

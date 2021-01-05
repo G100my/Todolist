@@ -80,13 +80,22 @@
 .status-block {
   grid-column-start: 2;
   grid-column-end: 4;
+  font-size: 16px;
+  display: flex;
 }
 .status-block span {
   display: inline-block;
-  height: 16px;
-  width: 16px;
 }
-.status-block span + span {
+.status-block span svg {
+  height: 100%;
+}
+.status-block span > span {
+  vertical-align: top;
+}
+.status-block span > span + span {
+  margin-left: 3px;
+}
+.status-block > span + span {
   margin-left: 10px;
 }
 

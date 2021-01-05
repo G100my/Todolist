@@ -21,7 +21,11 @@ const template = `
             <a @click='editHandler' v-html='editIcon' class='edit' type='button'></a>
         </div>
         <div class="status-block">
-            <span v-if="(data.deadlineDate != '' || data.deadlineTime != '')" v-html="datetimeIcon"></span>
+            <span v-if="(data.deadlineDate != '' || data.deadlineTime != '')">
+                <span v-html="datetimeIcon"></span>
+                <span v-if="data.deadlineDate != ''">{{ data.deadlineDate }}</span>
+                <span v-if="data.deadlineTime != ''">{{ data.deadlineTime }}</span>
+            </span>
             <span v-if="data.file != null" v-html="fileIcon"></span>
             <span v-if="data.comment != ''" v-html="commentIcon"></span>
         </div>

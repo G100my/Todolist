@@ -1,4 +1,4 @@
-import {updateTaskList} from "/store/store.js";
+import {updateTaskList} from "../src/store/store.js";
 
 describe("store", () => {
 

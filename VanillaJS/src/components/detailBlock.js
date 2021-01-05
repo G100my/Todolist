@@ -1,4 +1,4 @@
-import { datetimeIcon, fileIcon, commentIcon } from "/icon/icon.js";
+import { datetimeIcon, fileIcon, commentIcon } from "../../../icon/icon.js";
 // 生成中間區塊
 // ==== detail block
 function creatDetailBlock() {

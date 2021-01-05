@@ -1,5 +1,5 @@
 import { starEmptyIcon, starFillIcon, editIcon } from './style/icons/icon.js';
-import bindDrag from '/utility/drag.js';
+import bindDrag from '../../utility/drag.js';
 import task from './components/task.js';
 
 const vm = Vue.createApp({

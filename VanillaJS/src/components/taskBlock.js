@@ -2,7 +2,7 @@ import createButtonBlock from "./buttonBlock.js";
 import creatDetailBlock from "./detailBlock.js";
 import createStatusBlock from "./statusBlock.js";
 import createTitleBlock from "./titleBlock.js";
-import {starFillIcon, starEmptyIcon} from "/icon/icon.js";
+import {starFillIcon, starEmptyIcon} from "../../../icon/icon.js";
 
 // 集結四個 block 成為一個 task block
 function createTask(incomeData) {

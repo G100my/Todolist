@@ -5,15 +5,16 @@
 
 .task-header {
     padding: 24px 32px;
-    display: flex;
     border-bottom: #C8C8C8 2px solid;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    row-gap: 12px;
 
     div + div {
         margin-left: 16px;
     }
 
     .title {
-        flex: 1;
         font-size: 24px;
         
         p {
@@ -40,7 +41,6 @@
 .check-complete {
     position: relative;
 	display: block;
-	// margin-right: 15px;
 	height: 24px;
     width: 24px;
     
@@ -77,4 +77,19 @@
         transform: rotate(45deg);
     }
 
+}
+
+.status-block {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    
+    span {
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+    }
+
+    span + span {
+        margin-left: 10px;
+    }
 }

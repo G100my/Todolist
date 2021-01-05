@@ -1,4 +1,4 @@
-import { starEmptyIcon, starFillIcon, editIcon } from '../style/icons/icon.js';
+import { starEmptyIcon, starFillIcon, editIcon, datetimeIcon, fileIcon, commentIcon } from '../style/icons/icon.js';
 
 const template = `
 <div :id='data.id' :class='{"star-task": data.isStar}' draggable="true" class='task'>
@@ -19,6 +19,11 @@ const template = `
         <div class='button-group'>
             <a @click='isStarHandler' v-html='data.isStar ? starFillIcon : starEmptyIcon' class='star' type='button'></a>
             <a @click='editHandler' v-html='editIcon' class='edit' type='button'></a>
+        </div>
+        <div class="status-block">
+            <span v-if="(data.deadlineDate != '' || data.deadlineTime != '')" v-html="datetimeIcon"></span>
+            <span v-if="data.file != null" v-html="fileIcon"></span>
+            <span v-if="data.comment != ''" v-html="commentIcon"></span>
         </div>
     </div>
     <div :class='{ close: isClose }' class='content'>
@@ -57,6 +62,9 @@ export default {
             editIcon,
             isClose: true,
             titleEditable: false,
+            datetimeIcon,
+            fileIcon,
+            commentIcon,
         }
     },
     // 先設定上面的初始值，在 create 時換成 props incomeData

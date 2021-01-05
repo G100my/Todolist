@@ -14,14 +14,15 @@
 
 .task-header {
   padding: 24px 32px;
-  display: flex;
   border-bottom: #C8C8C8 2px solid;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  row-gap: 12px;
 }
 .task-header div + div {
   margin-left: 16px;
 }
 .task-header .title {
-  flex: 1;
   font-size: 24px;
 }
 .task-header .title p {
@@ -74,6 +75,19 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.status-block {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.status-block span {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+.status-block span + span {
+  margin-left: 10px;
 }
 
 .content {

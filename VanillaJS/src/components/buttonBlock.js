@@ -14,6 +14,7 @@ function createButtonBlock() {
 
 	submitButton = document.createElement('button');
 	submitButton.className = "submit-button";
+	submitButton.textContent = '+ Save';
 
 	// 設成 object property，紀錄位置，這樣不必一直寫 querySelector...
 	buttonBlock.submitButton = submitButton;

@@ -51,7 +51,7 @@ describe('task block', () => {
 
 				<div class="button-block">
 					<button class="cancel-button">Cancel</button>
-					<button class="submit-button"></button>
+					<button class="submit-button">+ Save</button>
 				</div>
 			</div>
 		</div>

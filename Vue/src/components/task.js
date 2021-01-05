@@ -45,16 +45,8 @@ export default {
     template,
     data() {
         return {
-            data: {
-                id: '',
-                isCompleted: false,
-                isStar: false,
-                taskTitle: '',
-                deadlineDate: '',
-                deadlineTime: '',
-                // file: null,
-                comment: '',
-            },
+            // 直接接過來?
+            data: this.incomeData,
             starEmptyIcon,
             starFillIcon,
             editIcon,
@@ -62,9 +54,9 @@ export default {
         }
     },
     // 先設定上面的初始值，在 create 時換成 props incomeData
-    created() {
-        this.data = Object.assign(this.data, this.incomeData);
-    },
+    // created() {
+    //     this.data = Object.assign(this.data, this.incomeData);
+    // },
     props: {
         incomeData: Object,
     },

@@ -62,6 +62,7 @@ function bindDrag(parent, callback) {
 		if (parent.id !== parentId) return;
 		dragItem.removeAttribute("style");
 		overItem.removeAttribute("style");
+		parent.removeAttribute("style");
 		parentId = undefined;
 	}
 

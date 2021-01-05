@@ -10,7 +10,11 @@ const template = `
             </label>
         </div>
         <div class='title'>
-            <p>{{ data.taskTitle }}</p>
+            <p
+                @blur='data.taskTitle = $event.target.textContent'
+                :textContent='data.taskTitle'
+                :contenteditable='titleEditable'
+            ></p>
         </div>
         <div class='button-group'>
             <a @click='isStarHandler' v-html='data.isStar ? starFillIcon : starEmptyIcon' class='star' type='button'></a>
@@ -51,6 +55,7 @@ export default {
             starFillIcon,
             editIcon,
             isClose: true,
+            titleEditable: false,
         }
     },
     // 先設定上面的初始值，在 create 時換成 props incomeData
@@ -80,7 +85,10 @@ export default {
     },
     methods: {
         isStarHandler() { this.data.isStar = !this.data.isStar },
-        editHandler() { this.isClose = !this.isClose },
+        editHandler() {
+            this.isClose = !this.isClose;
+            this.titleEditable = !this.titleEditable;
+        },
         cancelHandler() {
             // this.data = Object.assign(this.data, this.$props.incomeData);
             this.data = Object.assign(this.data, this.incomeData);

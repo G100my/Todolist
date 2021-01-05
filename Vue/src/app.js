@@ -32,16 +32,8 @@ const vm = Vue.createApp({
         this.taskList = JSON.parse(localStorage.getItem('taskList')) || [];
     },
     mounted() {
-        bindDrag(this.$refs['task-list-block'], (dragItem, insertBeforeItem) => {
-            const dragItemDataIndex = this.taskList.findIndex(item => item.id == dragItem.id);
-            const dragItemData = this.taskList.splice(dragItemDataIndex, 1)[0];
-            
-            if (!insertBeforeItem) this.taskList.push(dragItemData)
-            else {
-                const insertBeforeIndex = this.taskList.findIndex(item => item.id == insertBeforeItem.id);
-                this.taskList.splice(insertBeforeIndex, 0, dragItemData)
-            }
-        })
+        bindDrag(this.$refs['star-list'], this.dropHandler);
+        bindDrag(this.$refs['normal-list'], this.dropHandler);
     },
     watch: {
         taskList: {
@@ -88,6 +80,16 @@ const vm = Vue.createApp({
                     break;
             }
         },
+        dropHandler(dragItem, insertBeforeItem) {
+            const dragItemDataIndex = this.taskList.findIndex(item => item.id == dragItem.id);
+            const dragItemData = this.taskList.splice(dragItemDataIndex, 1)[0];
+            
+            if (!insertBeforeItem) this.taskList.push(dragItemData)
+            else {
+                const insertBeforeIndex = this.taskList.findIndex(item => item.id == insertBeforeItem.id);
+                this.taskList.splice(insertBeforeIndex, 0, dragItemData)
+            }
+        }
     },
     components: {
         task

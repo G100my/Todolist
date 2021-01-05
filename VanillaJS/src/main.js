@@ -18,24 +18,28 @@ function addTaskHandler(event) {
 	if (event.key !== "Enter") return;
 
 	const newTask = createTask({
-		taskTitle: addNewTaskInput.value,
+		taskTitle: this.value,
 	});
-	newTask.querySelector(".accordion").hidden = false;
+
+	const accordion = newTask.querySelector(".accordion")
 	const submitButton = newTask.querySelector(".submit-button");
 	const cancelButton = newTask.querySelector(".cancel-button");
 
+	this.value = "";
+	accordion.hidden = false;
 	submitButton.innerHTML = "+ Add";
 	submitButton.addEventListener("click", addHandler, {once: true});
 	cancelButton.addEventListener("click", cancelHandler);
+
 	this.parentNode.insertBefore(newTask, this);
 	this.hidden = true;
 
 	function addHandler() {
 		newTask.id = Date.now();
-		newTask.querySelector(".accordion").hidden = true;
+		accordion.hidden = true;
 		this.innerHTML = "+ Save";
 		addNewTaskInput.hidden = false;
-		addNewTaskInput.value = "";
+		
 		cancelButton.removeEventListener("click", cancelHandler);
 		reFreshPage(newTask.getData());
 		newTask.remove();
@@ -44,25 +48,13 @@ function addTaskHandler(event) {
 	function cancelHandler() {
 		newTask.remove();
 		addNewTaskInput.hidden = false;
-		addNewTaskInput.value = "";
 	}
 }
 
 addNewTaskInput.addEventListener("keydown", addTaskHandler);
 
-// view rander
-
-function reRenderTaskList() {
-	let tmpObject = {};
-	let tmpElementList = Array.from(normalArea.childNodes).concat(Array.from(starArea.childNodes));
-	tmpElementList.forEach(item => tmpObject[item.id] = item)
-
-	taskList.forEach((data) => {
-		starMove(tmpObject[data.id]);
-	});
-}
-// 渲染時重新分配有標記 star 的區塊該出現的位置
-function starMove(task) {
+// 按照 isStar 在對應區塊 append
+function appendElementDependOnStar(task) {
 	if (task.isStar) starArea.append(task);
 	else normalArea.append(task);
 }
@@ -78,7 +70,19 @@ function dealDragOrder(dragItem, insertBeforeItem) {
 		taskList.splice(insertBeforeIndex, 0, dragItemData)
 	}
 	localStorage.setItem("taskList", JSON.stringify(taskList))
-	reRenderTaskList();
+
+	// 這裡也可以另外抽出 reFreshPage 整個重新抽換 element 再生成。
+	// 
+	// tmpObject 所記錄的只有目前頁面上的 task element index，
+	// 如果是在只顯示 In Progress / Completed 的狀態時，
+	// 不會重新渲染全部的 task element
+	let tmpObject = {};
+	Array.from(normalArea.childNodes).forEach(item => tmpObject[item.id] = item)
+	Array.from(starArea.childNodes).forEach(item => tmpObject[item.id] = item)
+
+	taskList.forEach((data) => {
+		appendElementDependOnStar(tmpObject[data.id]);
+	});
 }
 
 bindDrag(normalArea, dealDragOrder);
@@ -86,7 +90,7 @@ bindDrag(starArea, dealDragOrder);
 
 // ==== sort button
 
-function sortReset(selfElement) {
+function refreshActivePage(selfElement) {
 	normalArea.textContent = "";
 	starArea.textContent = "";
 	Array.from(navButtonGroup.children).forEach(item => item.classList.remove('sort'));
@@ -94,53 +98,52 @@ function sortReset(selfElement) {
 }
 
 myTasksButton.addEventListener("click", function () {
-	whichSort = 'total';
-	sortReset(this);
+	whichSort = 'all';
+	refreshActivePage(this);
 	taskList.forEach(item => {
-		starMove(createTask(item))
+		appendElementDependOnStar(createTask(item))
 	})
 })
 inProgressButton.addEventListener("click", function () {
 	whichSort = 'progress';
-	sortReset(this);
+	refreshActivePage(this);
 	taskList.forEach(item => {
-		if (!item.isComplete) starMove(createTask(item))
+		if (!item.isComplete) appendElementDependOnStar(createTask(item))
 	})
 })
 completedButton.addEventListener("click", function () {
 	whichSort = 'completed';
-	sortReset(this);
+	refreshActivePage(this);
 	taskList.forEach(item => {
-		if (item.isComplete) starMove(createTask(item))
+		if (item.isComplete) appendElementDependOnStar(createTask(item))
 	})
 })
 // ==== onload
 
 function reFreshPage(changeData) {
 	taskList = updateTaskList(taskList, changeData)
-	console.log(taskList)
 	localStorage.setItem("taskList", JSON.stringify(taskList));
-		normalArea.textContent = "";
-		starArea.textContent = "";
-		switch (whichSort) {
-			case 'total':
-				taskList.forEach(item => {
-					starMove(createTask(item))
-				})
-				break;
-			case 'progress':
-				taskList.forEach(item => {
-					if (!item.isComplete) starMove(createTask(item))
-				})
-				break;
-			case 'completed':
-				taskList.forEach(item => {
-					if (item.isComplete) starMove(createTask(item))
-				})
-				break;
-			default:
-				throw 'somethig wrong which resort tasklist'
-		}
+	normalArea.textContent = "";
+	starArea.textContent = "";
+	switch (whichSort) {
+		case 'total':
+			taskList.forEach(item => {
+				appendElementDependOnStar(createTask(item))
+			})
+			break;
+		case 'progress':
+			taskList.forEach(item => {
+				if (!item.isComplete) appendElementDependOnStar(createTask(item))
+			})
+			break;
+		case 'completed':
+			taskList.forEach(item => {
+				if (item.isComplete) appendElementDependOnStar(createTask(item))
+			})
+			break;
+		default:
+			throw 'somethig wrong which resort tasklist'
+	}
 }
 
 window.onload = function () {
@@ -151,9 +154,9 @@ window.onload = function () {
 		taskList = storage;
 		taskList.forEach((taskData) => {
 			const task = createTask(taskData);
-			starMove(task);
+			appendElementDependOnStar(task);
 			// task.querySelector(".star").addEventListener("click", () => reRenderTaskList(task));
-	});
+		});
 	}
 
 	window.addEventListener("taskUpdate", (event) => reFreshPage(event.detail));

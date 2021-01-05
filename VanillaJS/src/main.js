@@ -31,14 +31,14 @@ function addTaskHandler(event) {
 	this.hidden = true;
 
 	function addHandler() {
+		newTask.id = Date.now();
 		newTask.querySelector(".accordion").hidden = true;
 		this.innerHTML = "+ Save";
 		addNewTaskInput.hidden = false;
 		addNewTaskInput.value = "";
-		starMove(newTask);
-		newTask.querySelector(".star").addEventListener("click", () => starMove(newTask));
 		cancelButton.removeEventListener("click", cancelHandler);
-		newTask.id = Date.now();
+		reFreshPage(newTask.getData());
+		newTask.remove();
 	}
 	
 	function cancelHandler() {

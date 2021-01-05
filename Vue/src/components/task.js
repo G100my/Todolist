@@ -49,8 +49,9 @@ export default {
     template,
     data() {
         return {
-            // 直接接過來?
-            data: this.incomeData,
+            // created 時 watch 已經 set up，所以直接接過來
+            data: {...this.incomeData},
+            previousData: undefined,
             starEmptyIcon,
             starFillIcon,
             editIcon,
@@ -88,10 +89,11 @@ export default {
         editHandler() {
             this.isClose = !this.isClose;
             this.titleEditable = !this.titleEditable;
+            this.previousData = { ...this.data };
         },
         cancelHandler() {
             // this.data = Object.assign(this.data, this.$props.incomeData);
-            this.data = Object.assign(this.data, this.incomeData);
+            this.data = { ...this.previousData };
             this.isClose = true;
         },
         submitHandler() {

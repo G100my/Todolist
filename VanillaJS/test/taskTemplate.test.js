@@ -4,7 +4,7 @@ import { datetimeIcon, fileIcon, commentIcon, editIcon, starEmptyIcon } from '/i
 describe('task block', () => {
 	const incomeData = {
 		id: "1111111",
-		isComplete: true,
+		isCompleted: true,
 		isStar: false,
 		taskTitle: "安安",
 		deadlineDate: "2020-02-20",

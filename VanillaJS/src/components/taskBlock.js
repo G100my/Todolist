@@ -10,7 +10,7 @@ function createTask(incomeData) {
 	// 預設初始值
 	task = Object.assign(document.createElement("div"), {
 		id: "",
-		isComplete: false,
+		isCompleted: false,
 		isStar: false,
 		taskTitle: "",
 		deadlineDate: "",
@@ -27,7 +27,7 @@ function createTask(incomeData) {
 	task.getData = function () {
 		return {
 			id: this.id,
-			isComplete: this.isComplete,
+			isCompleted: this.isCompleted,
 			isStar: this.isStar,
 			taskTitle: this.taskTitle,
 			deadlineDate: this.deadlineDate,
@@ -45,7 +45,7 @@ function createTask(incomeData) {
 	// 因為 handler 有可能會需要連動到其他 block ，所以在這一層才綁 handler
 	titleBlock = createTitleBlock();
 	titleBlock.checkbox.addEventListener("input", function () {
-		task.isComplete = this.checked;
+		task.isCompleted = this.checked;
 		emitUpdate();
 	});
 	titleBlock.starButton.addEventListener("click", function () {
@@ -131,7 +131,7 @@ function createTask(incomeData) {
 				break;
 
 			case "checkbox":
-				titleBlock.checkbox.checked = task.isComplete;
+				titleBlock.checkbox.checked = task.isCompleted;
 				break;
 			case "star":
 				titleBlock.starButton.innerHTML = task.isStar ? starFillIcon : starEmptyIcon;

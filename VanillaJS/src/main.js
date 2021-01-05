@@ -108,14 +108,14 @@ inProgressButton.addEventListener("click", function () {
 	whichSort = 'progress';
 	refreshActivePage(this);
 	taskList.forEach(item => {
-		if (!item.isComplete) appendElementDependOnStar(createTask(item))
+		if (!item.isCompleted) appendElementDependOnStar(createTask(item))
 	})
 })
 completedButton.addEventListener("click", function () {
 	whichSort = 'completed';
 	refreshActivePage(this);
 	taskList.forEach(item => {
-		if (item.isComplete) appendElementDependOnStar(createTask(item))
+		if (item.isCompleted) appendElementDependOnStar(createTask(item))
 	})
 })
 // ==== onload
@@ -133,12 +133,12 @@ function reFreshPage(changeData) {
 			break;
 		case 'progress':
 			taskList.forEach(item => {
-				if (!item.isComplete) appendElementDependOnStar(createTask(item))
+				if (!item.isCompleted) appendElementDependOnStar(createTask(item))
 			})
 			break;
 		case 'completed':
 			taskList.forEach(item => {
-				if (item.isComplete) appendElementDependOnStar(createTask(item))
+				if (item.isCompleted) appendElementDependOnStar(createTask(item))
 			})
 			break;
 		default:

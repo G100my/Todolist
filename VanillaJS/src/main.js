@@ -116,21 +116,10 @@ completedButton.addEventListener("click", function () {
 })
 // ==== onload
 
-window.onload = function () {
-	let string = localStorage.getItem("taskList");
-	let storage = JSON.parse(string);
-
-	if (Array.isArray(storage)) {
-		taskList = storage;
-		taskList.forEach((taskData) => {
-			const task = createTask(taskData);
-			starMove(task);
-			task.querySelector(".star").addEventListener("click", () => reRenderTaskList(task));
-		});
-	}
-
-	window.addEventListener("taskUpdate", function (event) {
-		localStorage.setItem("taskList", JSON.stringify(updateTaskList(taskList, event.detail)));
+function reFreshPage(changeData) {
+	taskList = updateTaskList(taskList, changeData)
+	console.log(taskList)
+	localStorage.setItem("taskList", JSON.stringify(taskList));
 		normalArea.textContent = "";
 		starArea.textContent = "";
 		switch (whichSort) {
@@ -152,5 +141,20 @@ window.onload = function () {
 			default:
 				throw 'somethig wrong which resort tasklist'
 		}
+}
+
+window.onload = function () {
+	let string = localStorage.getItem("taskList");
+	let storage = JSON.parse(string);
+
+	if (Array.isArray(storage)) {
+		taskList = storage;
+		taskList.forEach((taskData) => {
+			const task = createTask(taskData);
+			starMove(task);
+			// task.querySelector(".star").addEventListener("click", () => reRenderTaskList(task));
 	});
+	}
+
+	window.addEventListener("taskUpdate", (event) => reFreshPage(event.detail));
 };

@@ -22,6 +22,7 @@ function createTask(incomeData) {
 	});
 	task.className = "task-container";
 	task.draggable = true;
+
 	// 設為 object property function，取值用的
 	task.getData = function () {
 		return {
@@ -41,7 +42,7 @@ function createTask(incomeData) {
 	}
 
 	// 建立 titleBlock，個別綁 handler
-	// 因為 handler 有可能會影響到其他 block ，所以在這一層才綁 handler
+	// 因為 handler 有可能會需要連動到其他 block ，所以在這一層才綁 handler
 	titleBlock = createTitleBlock();
 	titleBlock.checkbox.addEventListener("input", function () {
 		task.isComplete = this.checked;
@@ -52,13 +53,14 @@ function createTask(incomeData) {
 		reRender("star");
 		emitUpdate();
 	});
-	titleBlock.taskMassage.addEventListener("input", function () {
+	titleBlock.taskMassage.addEventListener("change", function () {
 		task.taskTitle = this.textContent;
 		reRender("taskMassage");
 		emitUpdate();
 	});
 	titleBlock.editButton.addEventListener("click", function () {
 		accordion.hidden = !accordion.hidden;
+		titleBlock.taskMassage.contentEditable = true;
 	});
 
 	statusBlock = createStatusBlock();
@@ -68,6 +70,7 @@ function createTask(incomeData) {
 
 	function updateData() {
 		task.taskTitle = titleBlock.taskMassage.textContent;
+		titleBlock.taskMassage.contentEditable = false;
 		task.deadlineDate = detailBlock.deadlineDate.value;
 		task.deadlineTime = detailBlock.deadlineTime.value;
 		task.comment = detailBlock.comment.value;
@@ -78,6 +81,8 @@ function createTask(incomeData) {
 
 	function cancelDetail() {
 		titleBlock.taskMassage.textContent = task.taskTitle;
+		titleBlock.taskMassage.contentEditable = false;
+
 		detailBlock.deadlineDate.value = task.deadlineDate;
 		detailBlock.deadlineTime.value = task.deadlineTime;
 		detailBlock.comment.value = task.comment;
